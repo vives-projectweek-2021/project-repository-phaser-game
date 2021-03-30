@@ -1,8 +1,17 @@
 # Phaser Game
 
+Our idea is to make an infinite runner game. Where the objective is to get the character as far as possible while avoiding obstacles (and collect coins). 
+
 We chose an endless runner because you can start very simple and build up from there.
 
 Some endless runners are very well-known for their addictiveness, like Subway Surfers, Temple Run, Jetpack Joyride, Flappy Bird and the Google Dinosaur Game (when you don’t have an internet connection in Chrome).
+
+## Team members
+
+- Arno Schoutteten
+- Aaron Van Vyve
+- Henry Buysschaert
+
 
 ## Game Ideas
 
@@ -103,11 +112,6 @@ This also makes it possible to host a sql server and to create a player database
 - SMB
 - Domain setup
 
-### team members
-
-- Arno Schoutteten
-- Aaron Van Vyve
-- Henry Buysschaert
 
 ## Hardware & software
 
