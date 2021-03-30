@@ -1,6 +1,10 @@
 # Phaser Game 
 
+<<<<<<< HEAD
 TEST TEST TEST 
+=======
+ 
+>>>>>>> 3bebe0702fce408ee5cf715ef609458603b4fc9d
 
 ## Ideas 
 
