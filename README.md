@@ -1,100 +1,130 @@
-# Phaser Game 
+# Phaser Game
 
- 
+Our idea is to make an infinite runner game. Where the objective is to get the character as - far as possible while avoiding obstacles (and collect coins).
 
-## Ideas 
+We chose an endless runner because you can start very simple and build up from there.
 
-### Physics 
+Some endless runners are very well-known for their addictiveness, like Subway Surfers, Temple Run, Jetpack Joyride, Flappy Bird and the Google Dinosaur Game (when you don’t have an internet connection in Chrome).
 
-Flat plain with holes and obstacles 
+## Game Ideas
 
-Moving ground 
+### Physics
 
-Multiple paths for the player to choose 
+- Flat plain with holes and obstacles
+- Moving ground (height)
+- Multiple paths for the player to choose
+- Changeable gravity
+- Double jump
+- Left right moveable (finetune)
 
-Changeable gravity 
+### Powerups
 
-Double jump 
+#### Buffs
 
-Left right moveable (finetune) 
+- Low gravity
+- Jumpboost
+- Speed
+- Triple jump
+- Extra life
+- Coins (extra points)
 
-### Powerups 
+#### Debuffs
 
-#### Buffs 
+- Slowness
+- Dwarfinator (smaller character)
+- Single jump
 
-Low gravity 
+### Themes (graphics)
 
-Jumpboost 
+- Middle ages
+- Construction site
+- Dog competition
+- Alien, space
+- Skater/thief, city
+- Viking, Viking city
+- Rat, sewers
+- Ocean
+- Clouds
+- Firedude, volcanos
 
-Speed 
+### Visual
 
-Triple jump 
+#### Start menu
 
-Coins (extra points) 
+- Play
+- Difficulty
+- Exit
+- Donate
+- About
 
-  
+### About
 
- #### Debuffs 
+#### Game menu
 
-Slowness 
+- Current score
+- Timer
+- Settings   <!--  the list under setting needs to be intented (extra tab) -->
+  - Sound FX
+  - Background music
+  - Exit
 
-Dwarfinator  
+## Hosting
 
-Single jump 
+Phaser can be hosted from netlify, Because the webpage is static.
 
- 
+But we will host the project from a Windows server. This is because This is difficult to work together on the same document at the same time. And with this solution, we can work on a smb share. So every change is directly connected to each other. This way everyone can see all the changes in real time.
 
-### Themes 
+This also makes it possible to host a sql server and to create a player database for example (This is an extra if we have some spare time).
 
-Middle ages 
+## Tasks
 
-Construction site 
+### Learning
 
-Dog competition 
+- Phaser
+- JavaScript
+- Graphic Design
+- Game Design
 
-Alien, space  
+### Visuals/graphics
 
-Skater/thief, city 
+- Background
+- Character
+- Obstacles / enemies
 
-Viking, Viking city 
+### Programming (JavaScript)
 
-Rat, sewers  
+- Movement
+- Power ups
+- Menu's
+- Game Logic
 
-Firedude, volcanos 
+### Server setup
 
+- Windows server
+- VPN
+- SMB
+- Domain setup
 
- 
+### team members
 
-### Visual: 
+- Arno Schoutteten
+- Aaron Van Vyve
+- Henry Buysschaert
 
-#### Start menu: 
+## Hardware & software
 
-Play 
+- Hardware: pc
+- Software: Visual Studio Code (code editor)
+- Language: JavaScript using Phaser (Framework)
 
-Difficulty 
+### Extra
 
-Exit 
+Php mysql database that stores playerdata
 
-Donate 
+## Links/ bibliography
 
-About 
+[Phaser Tutorial 1](https://www.youtube.com/watch?v=uxos1GG32Tg)
 
-#### Game menu: 
+[Complete Course Phaser 1hour](https://www.youtube.com/watch?v=hI_LS8bdkM4)
 
-Current score 
-
-Timer 
-
-Settings   <!--  the list under setting needs to be intented (extra tab) --> 
-
-Sound FX 
-
-Background music 
-
-Exit 
-
- 
-
-### Extra 
-
-Php mysql database that stores playerdata 
+[Example endless runner](https://www.emanueleferonato.com/2019/01/23/html5-endless-runner-built-with-phaser-and-arcade-physics-step-5-adding-deadly-fire-being-kind-with-players-by-setting-its-body-smaller-than-the-image/)
