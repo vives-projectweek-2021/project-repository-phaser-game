@@ -6,11 +6,11 @@ We chose an endless runner because you can start very simple and build up from t
 
 Some endless runners are very well-known for their addictiveness, like Subway Surfers, Temple Run, Jetpack Joyride, Flappy Bird and the Google Dinosaur Game (when you don’t have an internet connection in Chrome).
 
-## Team members
+### Team members
 
-- Arno Schoutteten
-- Aaron Van Vyve
-- Henry Buysschaert
+- [Arno Schoutteten](https://github.com/vives-projectweek-2021/projectweek21-report-madness007)
+- [Aaron Van Vyve](https://github.com/vives-projectweek-2021/projectweek21-report-AaronVanV)
+- [Henry Buysschaert](https://github.com/vives-projectweek-2021/projectweek21-report-HenryBuyssie)
 
 
 ## Game Ideas
