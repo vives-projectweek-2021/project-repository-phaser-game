@@ -15,8 +15,7 @@ var config = {
         update: update
     }
 };
-var score = 0;
-var scoreText;
+
 
 function preload ()
 {
@@ -25,40 +24,29 @@ function preload ()
     this.load.image('obstacle','assets/obstacle.png');
     this.load.image('player','assets/player.png');
     this.load.image('coin','assets/coin.png');
-
 }
 
-var gameOver=false;
+
 
 function create ()
 {
     this.gameSpeed=3;
-    
-    
-    
-
     //create platforms in group
     platforms=this.physics.add.staticGroup();
     platforms.create(400,560,'ground').setScale(5,1).refreshBody();
-    //platforms.create(250, 50, 'ground').setScale(0.1,1).refreshBody();
-    //platforms.refresh();
-    //this.platforms = this.add.tileSprite(50, 600, 640, 50,'ground').setOrigin(0, 1);
 
-
-    //this.bg=this.add.image(0,0,'background').setOrigin(0);
     this.bg = this.add.tileSprite(500,300,1000,600, 'background');
     
     //create player
     player = this.physics.add.sprite(130, 400, 'player');
     
-    player.setBounce(0.05).setGravityY(300);      //adds little bounce after jump
-    player.setCollideWorldBounds(true); //cant go offscreen
+    player.setBounce(0.05).setGravityY(300);//adds little bounce after jump
+    player.setCollideWorldBounds(true);//cant go offscreen
     this.physics.add.collider(player, platforms);
 
     //add obstacles
     obstacles= this.physics.add.group();
     obstacles.create(900,470,'obstacle');
-    //obstacle= this.physics.add.sprite(800,500,'obstacle');
     this.physics.add.collider(obstacles, platforms);
     
     //create coins
@@ -66,19 +54,14 @@ function create ()
     coins.create(700,200,'coin');
     this.physics.add.collider(coins, platforms);
     
-    
-
-    
     scoreText = this.add.text(40, 50, 'score: 0', { fontSize: '21px', fill: '#000' });
-    //this.cameras.main.startFollow(player);
     this.cameras.main.backgroundColor = Phaser.Display.Color.HexStringToColor('#1cd4f0');
 
     //timer
-    
     timedEvent = this.time.addEvent({ delay: Phaser.Math.Between(500, 5000), callback: spawn, callbackScope: this, loop: true });
 }
 
-var timedEvent;
+
 
 
 function spawn(){
@@ -87,10 +70,6 @@ function spawn(){
         var coinX =Phaser.Math.Between(250, 1000);
         var coiny =Phaser.Math.Between(0, 300);
         coins.create(coinX,coiny,'coin');
-        
-        
-        
-        
     }
 
 }
@@ -112,8 +91,6 @@ function update ()
     
    
 }
-
-
 function collectCoin(player, coin)
 {
     coin.disableBody(true, true);
@@ -126,7 +103,8 @@ function obstacleHit(player,obstacle){
     obstacle.disableBody(true, true);
 }
 
-
-
-
+var score = 0;
+var scoreText;
+var gameOver=false;
+var timedEvent;
 var game = new Phaser.Game(config);
