@@ -1,6 +1,7 @@
 export const CST = {
-    scenes: {
+    SCENES: {
         LOAD: "LOAD",
-        MENU: "MENU"
+        MENU: "MENU",
+        GAME: "GAME"
     }
 }

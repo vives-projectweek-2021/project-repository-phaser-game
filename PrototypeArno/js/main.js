@@ -1,12 +1,25 @@
 /** @type {import("phaser")} */
 
-import {LoadScene} from "./scenes/LoadScene";
-import {MenuScene} from "./scenes/MenuScene";
+import {LoadScene} from "./scenes/LoadScene.js";
+import {MenuScene} from "./scenes/MenuScene.js";
+import {Game} from "./scenes/Game.js";
 let game = new Phaser.Game({
-    width: 100,
-    height: 100,
+    width: 1000,
+    height: 600,
     scene:[
         LoadScene,
-        MenuScene
-    ]
+        MenuScene,
+        Game
+    ],
+    renderer:{
+        pixelart: true
+    },
+    type: Phaser.AUTO,
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 300 },
+            debug: false
+        }
+    },
 })
