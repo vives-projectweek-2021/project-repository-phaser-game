@@ -28,10 +28,10 @@ export class LoadScene extends Phaser.Scene{
         */
 
         //simulate loung loading time
-       /* for(let i = 0; i < 100; i++){
+        for(let i = 0; i < 100; i++){
             this.load.image('background' + i,'assets/general/first background expanded.png');
             console.log("test");
-        }*/
+        }
 
        this.load.on("progress", (percent)=>{
            loadingBar.fillRect(0, this.game.renderer.height / 2, this.game.renderer.width * percent, 50);
