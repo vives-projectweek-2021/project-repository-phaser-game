@@ -1,0 +1,58 @@
+#include "KeyboardAzertyFr.h"
+int inputs[] = {2, 3, 4, 5, 6, 7, 8, 9, 10};
+void setup() {
+  KeyboardAzertyFr.begin();
+  Serial.begin(9600);
+  for(int i = 0; i<9; i++){
+    pinMode(inputs[i], INPUT_PULLUP);
+  }
+}
+bool previousState[9] = {false};
+void loop() {
+  for(int i = 0; i<9; i++){
+    if(digitalRead(inputs[i]) == HIGH){
+      if(previousState[i] == false){
+        Serial.println(inputs[i]);
+        launchButton(inputs[i]);
+        delay(100);
+      }
+      previousState[i] = true;
+    }
+    else{
+      previousState[i] = false;
+    }
+  }
+}
+void launchButton(int button){
+  switch (button) {
+    case 2:    // left JOYSTICK
+      KeyboardAzertyFr.press(KEY_LEFT_ARROW);
+      break;
+    case 3:    // down JOYSTICK
+      KeyboardAzertyFr.press(KEY_DOWN_ARROW);
+      break;
+    case 4:    // right JOYSTICK
+      KeyboardAzertyFr.press(KEY_RIGHT_ARROW);
+      break;
+    case 5:    // up JOYSTICK
+      KeyboardAzertyFr.press(KEY_UP_ARROW);
+      break;
+    case 6:    // left BUTTONS
+      KeyboardAzertyFr.press(KEY_LEFT_ARROW);
+      break;
+    case 7:    // up BUTTONS
+      KeyboardAzertyFr.press(KEY_UP_ARROW);
+      break;
+    case 8:    // right BUTTONS
+      KeyboardAzertyFr.press(KEY_RIGHT_ARROW);
+      break;
+    case 9:    // down BUTTONS
+      KeyboardAzertyFr.press(KEY_DOWN_ARROW);
+      break;
+    case 10:    // kill switch
+      KeyboardAzertyFr.print(" ");
+      break;
+  }
+  delay(50);
+  KeyboardAzertyFr.releaseAll();
+}
