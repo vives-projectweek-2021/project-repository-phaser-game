@@ -4,7 +4,7 @@ import {LoadScene} from "./scenes/LoadScene.js";
 import {MenuScene} from "./scenes/MenuScene.js";
 import {Game} from "./scenes/Game.js";
 let game = new Phaser.Game({
-    width: 1000,
+    width: 1000,        //actual game 1000, testing 1500
     height: 600,
     scene:[
         LoadScene,

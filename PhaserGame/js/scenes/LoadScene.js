@@ -16,6 +16,7 @@ export class LoadScene extends Phaser.Scene{
         this.load.image('coin','assets/powerups/coin.png');
         this.load.image('start_button','assets/menu/start.png');
         this.load.image('press_to_start','assets/menu/presstostart.png');
+        this.load.image('enemy','assets/game/crosshair.png');
 
         //create LoadingBar
         let loadingBar = this.add.graphics();
