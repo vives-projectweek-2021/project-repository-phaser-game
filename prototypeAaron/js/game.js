@@ -19,6 +19,7 @@ var score = 0;
 var scoreText;
 var dropCounter=0;
 var dropText;
+var distanceText;
 
 var nextDrop=0;
 
@@ -80,6 +81,7 @@ function create ()
     
     scoreText = this.add.text(40, 50, 'score: 0', { fontSize: '21px', fill: '#000' });
     dropText = this.add.text(200, 50, 'Time: 0', { fontSize: '21px', fill: '#000' });
+    distanceText = this.add.text(700, 50, 'Distance: 0', { fontSize: '21px', fill: '#000' });
     //this.cameras.main.startFollow(player);
     this.cameras.main.backgroundColor = Phaser.Display.Color.HexStringToColor('#1cd4f0');
 
@@ -160,6 +162,7 @@ function update ()
     }
         
     dropText.setText('DropTime: ' + dropCounter);
+    distanceText.setText('Distance: '+ Math.floor((this.time.now)*this.gameSpeed/500))
 }
 
 

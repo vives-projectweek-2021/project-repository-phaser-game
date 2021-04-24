@@ -35,6 +35,7 @@ export class Game extends Phaser.Scene{
         //create text on screen
         this.scoreText = this.add.text(40, 50, 'score: 0', { fontSize: '21px', fill: '#000' });
         this.dropText = this.add.text(200, 50, 'Time: 0', { fontSize: '21px', fill: '#000' });
+        this.distanceText= this.add.text(800, 50, 'Distance: 0', { fontSize: '21px', fill: '#000' });
 
 
         //background if not loading image = blue
@@ -82,6 +83,12 @@ export class Game extends Phaser.Scene{
         //drop counter on screen
         this.dropText.setText('DropTime: ' + this.dropCounter);
 
+        //distance counter on screen, stops when gameOver
+        if(!this.gameOver){
+            this.distance= Math.floor((this.time.now)*this.gameSpeed/400)   //400 because base gameSpeed is 4
+        }
+        this.distanceText.setText('Distance: '+ this.distance)     
+
         //player hit-detection
         this.physics.add.overlap(this.player, this.coins, this.collectCoin, null, this);
         this.physics.add.overlap(this.player, this.obstacles, this.obstacleHit, null, this);
@@ -118,6 +125,7 @@ export class Game extends Phaser.Scene{
         obstacle.disableBody(true, true);
     }
 
+    //creating some variables
     score = 0;
     scoreText;
     dropText;
@@ -126,6 +134,8 @@ export class Game extends Phaser.Scene{
     gameOver=false;
     timedEvent;
     disableDropTimer;
+    distanceText;
+    distance=0;
 }
 
 
