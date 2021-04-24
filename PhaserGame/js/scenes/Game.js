@@ -36,6 +36,7 @@ export class Game extends Phaser.Scene{
         this.scoreText = this.add.text(40, 50, 'score: 0', { fontSize: '21px', fill: '#000' });
         this.dropText = this.add.text(200, 50, 'Time: 0', { fontSize: '21px', fill: '#000' });
         this.distanceText= this.add.text(800, 50, 'Distance: 0', { fontSize: '21px', fill: '#000' });
+        this.disableEnemyText= this.add.text(500, 50, 'Player 2 disabled for : 0', { fontSize: '21px', fill: '#000' });
 
 
         //background if not loading image = blue
@@ -45,6 +46,10 @@ export class Game extends Phaser.Scene{
         this.enemy= this.physics.add.sprite(150,150,'enemy');
         this.enemy.setGravityY(-300);
         this.enemy.setCollideWorldBounds(true); //cant go offscreen
+
+        //create disable power
+        this.disablePower= this.physics.add.group({allowGravity: false});
+        this.disablePower.create(700,500,'disablePower');
 
 
         //timer
@@ -58,30 +63,45 @@ export class Game extends Phaser.Scene{
         this.obstacles.setVelocityX(this.gameSpeed*-60);
         this.coins.setVelocityX(this.gameSpeed*-60);
         this.bg.tilePositionX += this.gameSpeed;
+        this.disablePower.setVelocityX(this.gameSpeed*-60);
+
 
         //player jump
-        if (this.cursors.up.isDown && this.player.body.onFloor())
+        if (this.cursors.space.isDown && this.player.body.onFloor())
         {
             this.player.setVelocityY(-450);
         }
 
-        //enemy movement
-        if (this.cursors.left.isDown){
+
+        //enemy         with disable power
+
+            //enemy movement
+        if (this.cursors.left.isDown && this.disableEnemyTimer<this.time.now){
             this.enemy.setVelocityX(-200);
-        }else if (this.cursors.right.isDown){
+        }else if (this.cursors.right.isDown && this.disableEnemyTimer<this.time.now){
             this.enemy.setVelocityX(200);
         }else{this.enemy.setVelocityX(0);}
-        //enemy drop
-        if (this.cursors.down.isDown && this.nextDrop<this.time.now){
+        
+            //enemy drop
+        if (this.cursors.down.isDown && this.nextDrop<this.time.now && this.disableEnemyTimer<this.time.now){
             this.obstacles.create(this.enemy.x, this.enemy.y, 'obstacle');
             this.nextDrop = this.time.now + 3000;
         }
+
+        //enemy drop counter
         this.dropCounter=Math.floor((this.nextDrop-this.time.now)/100);
         if(this.dropCounter<0){
             this.dropCounter=0;
         }
         //drop counter on screen
         this.dropText.setText('DropTime: ' + this.dropCounter);
+
+        //disable power on screen
+        this.disableEnemyCounter=Math.floor((this.disableEnemyTimer-this.time.now)/100);
+        if(this.disableEnemyCounter<0){
+            this.disableEnemyCounter=0;
+        }
+        this.disableEnemyText.setText('Disable Timer: ' + this.disableEnemyCounter);
 
         //distance counter on screen, stops when gameOver
         if(!this.gameOver){
@@ -92,6 +112,7 @@ export class Game extends Phaser.Scene{
         //player hit-detection
         this.physics.add.overlap(this.player, this.coins, this.collectCoin, null, this);
         this.physics.add.overlap(this.player, this.obstacles, this.obstacleHit, null, this);
+        this.physics.add.overlap(this.player, this.disablePower, this.collectDisable, null, this);
         
 
 
@@ -125,15 +146,27 @@ export class Game extends Phaser.Scene{
         obstacle.disableBody(true, true);
     }
 
+    collectDisable(player,disablePower){
+        this.disableEnemyTimer= this.time.now + 10000;
+        disablePower.disableBody(true, true);
+    }
+
     //creating some variables
+    gameOver=false;
+    timedEvent;
+
     score = 0;
     scoreText;
+
     dropText;
     dropCounter=0;
     nextDrop=0;
-    gameOver=false;
-    timedEvent;
-    disableDropTimer;
+    disableDropTimer=0;
+
+    disableEnemyTimer=0;
+    disableEnemyText;
+    disableEnemyCounter=0;
+
     distanceText;
     distance=0;
 }

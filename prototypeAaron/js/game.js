@@ -15,13 +15,7 @@ var config = {
         update: update
     }
 };
-var score = 0;
-var scoreText;
-var dropCounter=0;
-var dropText;
-var distanceText;
 
-var nextDrop=0;
 
 function preload ()
 {
@@ -32,6 +26,7 @@ function preload ()
     this.load.image('coin','assets/coin.png');
     this.load.image('enemy','assets/crosshair.png');
     this.load.image('jumppower','assets/jumppower.png');
+    this.load.image('disabelenemy','assets/disableplayer.png');
 
 
 }
@@ -73,6 +68,11 @@ function create ()
     coins = this.physics.add.group({allowGravity: false});
     //coins.create(700,200,'coin');
     this.physics.add.collider(coins, platforms);
+
+    //create disable power
+    disablePower= this.physics.add.group({allowGravity: false});
+    disablePower.create(700,500,'disabelenemy');
+    
     
 
     
@@ -82,6 +82,9 @@ function create ()
     scoreText = this.add.text(40, 50, 'score: 0', { fontSize: '21px', fill: '#000' });
     dropText = this.add.text(200, 50, 'Time: 0', { fontSize: '21px', fill: '#000' });
     distanceText = this.add.text(700, 50, 'Distance: 0', { fontSize: '21px', fill: '#000' });
+    disableText = this.add.text(500, 50, 'DisableTimer: 0', { fontSize: '21px', fill: '#000' });
+
+
     //this.cameras.main.startFollow(player);
     this.cameras.main.backgroundColor = Phaser.Display.Color.HexStringToColor('#1cd4f0');
 
@@ -126,6 +129,7 @@ function update ()
     obstacles.setVelocityX(this.gameSpeed*-35);
     coins.setVelocityX(this.gameSpeed*-35);
     jumpPower.setVelocityX(this.gameSpeed*-35);
+    disablePower.setVelocityX(this.gameSpeed*-35);
 
     if (cursors.space.isDown && player.body.onFloor())
     {
@@ -135,21 +139,21 @@ function update ()
 
     this.physics.add.overlap(player, coins, collectCoin, null, this);
     this.physics.add.overlap(player, obstacles, obstacleHit, null, this);
-    //this.physics.add.overlap(player, jumpPower, collectJump, null, this);
+    this.physics.add.overlap(player, disablePower, collectDisable, null, this);
 
     
 
     this.bg.tilePositionX += this.gameSpeed;
     
-    if (cursors.left.isDown){
+    if (cursors.left.isDown&& disableTimer<this.time.now){
         enemy.setVelocityX(-200);
     }else
 
-    if (cursors.right.isDown){
+    if (cursors.right.isDown && disableTimer<this.time.now){
         enemy.setVelocityX(200);
     }else{enemy.setVelocityX(0);}
     
-    if (cursors.down.isDown && nextDrop<this.time.now){
+    if (cursors.down.isDown && nextDrop<this.time.now && disableTimer<this.time.now){
         obstacles.create(enemy.x, enemy.y, 'obstacle');
         
         nextDrop = this.time.now + 3000;
@@ -163,6 +167,13 @@ function update ()
         
     dropText.setText('DropTime: ' + dropCounter);
     distanceText.setText('Distance: '+ Math.floor((this.time.now)*this.gameSpeed/500))
+
+    disableCounter=Math.floor((disableTimer-this.time.now)/100);
+    if(disableCounter<0){
+        disableCounter=0;
+    }
+    disableText.setText('DropTime: ' + disableCounter);
+    
 }
 
 
@@ -180,6 +191,10 @@ function obstacleHit(player,obstacle){
     this.gameSpeed=0;
     obstacle.disableBody(true, true);
 }
+
+function collectDisable(player, disable){
+    disableTimer= this.time.now + 10000;
+}
 // function collectJump(player,jumpPower){
 //     disablemove=true;
 //     jumpPower.disableBody(true,true)
@@ -192,6 +207,18 @@ function obstacleHit(player,obstacle){
     
     
 // }
+var score = 0;
+var scoreText;
+
+var nextDrop=0;
+var dropCounter=0;
+var dropText;
+
+var distanceText;
+
+var disableText;
+var disableCounter=0;
+var disableTimer=0;
 
 
 var game = new Phaser.Game(config);
