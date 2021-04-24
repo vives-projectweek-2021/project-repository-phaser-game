@@ -4,7 +4,7 @@
 
 [Game-URL](https://game.phaser.ml)
 
-Our idea is to make an infinite runner game. Where the objective is to get the character as far as possible while avoiding obstacles (and collect coins). 
+Our idea is to make an infinite runner game. Where the objective is to get the character as far as possible while avoiding obstacles (and collect coins). But with a twist, this endless runner can be played with a friend, they can try to stop you by droping obstacles and activating debuffs.
 
 We chose an endless runner because you can start very simple and build up from there.
 
@@ -25,7 +25,7 @@ Some endless runners are very well-known for their addictiveness, like Subway Su
 - Multiple paths for the player to choose
 - Changeable gravity
 - Double jump
-- Left right moveable (finetune)
+- Player 2 that can drop obstacles
 
 ### Powerups
 
