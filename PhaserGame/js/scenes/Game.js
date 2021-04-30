@@ -36,7 +36,7 @@ export class Game extends Phaser.Scene{
         this.scoreText = this.add.text(40, 50, 'score: 0', { fontSize: '21px', fill: '#000' });
         this.dropText = this.add.text(200, 50, 'Time: 0', { fontSize: '21px', fill: '#000' });
         this.distanceText= this.add.text(800, 50, 'Distance: 0', { fontSize: '21px', fill: '#000' });
-        this.abilityText = this.add.text(200, 50, 'gravitycounter: 0', { fontSize: '21px', fill: '#000' });
+        this.abilityText = this.add.text(200, 80, 'gravitycounter: 0', { fontSize: '21px', fill: '#000' });
         this.disableEnemyText= this.add.text(500, 50, 'Player 2 disabled for : 0', { fontSize: '21px', fill: '#000' });
 
 
@@ -59,17 +59,17 @@ export class Game extends Phaser.Scene{
         this.physics.add.collider(this.tripleJumpCoin, this.platforms);
 
         this.disablePower= this.physics.add.group({allowGravity: false});
-        this.disablePower.create(700,500,'disablePower');
 
         //create debuffs
         this.singleJumpCoin = this.physics.add.group({allowGravity: false});
         this.physics.add.collider(this.singleJumpCoin, this.platforms);
 
         //timer
-        this.timedEvent = this.time.addEvent({ delay: Phaser.Math.Between(500, 5000), callback: this.spawn, callbackScope: this, loop: true });
+        this.timedEvent = this.time.addEvent({ delay: 2500, callback: this.spawn, callbackScope: this, loop: true });
         this.powerEvent = this.time.addEvent({ delay: 60000, callback: this.power, callbackScope: this, loop: true });
         this.abilityText.visible = false;
-        }
+    }
+
     update (){
         //create key input: space, shift, arrow keys
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -202,7 +202,7 @@ export class Game extends Phaser.Scene{
             else if (this.powerNumber = 2) {
                 this.singleJumpCoin.create(powerX, powerY, 'singlejump')
             }
-            else if (this.powerNumber = 3) {
+            else if (this.powerNumber = 3 || true) {
                 this.tripleJumpCoin.create(powerX, powerY, 'triplejump')
             }
         }
@@ -216,9 +216,15 @@ export class Game extends Phaser.Scene{
     }
 
     obstacleHit(player,obstacle){
+        health -= 1;
+        if (health < 1) {
         this.gameOver=true;
         this.gameSpeed=0;
         obstacle.disableBody(true, true);
+        }
+        else {
+            obstacle.disableBody(true, true);
+        }
     }
 
     collectDisable(player,disablePower){
