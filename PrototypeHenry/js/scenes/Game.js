@@ -139,10 +139,10 @@ export class Game extends Phaser.Scene{
             if (this.powerNumber = 1) {
                 this.lowGravityCoin.create(powerX, powerY,'lowgravity')
             }
-            else if (this.powerNumber = 2) {
+            else if (this.powerNumber = 2) {<
                 this.singleJumpCoin.create(powerX, powerY, 'singlejump')
             }
-            else if (this.powerNumber = 3 || true) {
+            else if (this.powerNumber = 3) {
                 this.tripleJumpCoin.create(powerX, powerY, 'triplejump')
             }
         }
