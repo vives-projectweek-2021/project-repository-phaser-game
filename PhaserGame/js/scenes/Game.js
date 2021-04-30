@@ -60,9 +60,13 @@ export class Game extends Phaser.Scene{
 
         this.disablePower= this.physics.add.group({allowGravity: false});
 
+        this.slowTimeCoin = this.physics.add.group({allowGravity: false});
+        this.physics.add.collider(this.slowTimeCoin, this.platforms);
+        this.slowTimeCoin.create(1100, 400, 'slowtime');
+
         //create debuffs
         this.singleJumpCoin = this.physics.add.group({allowGravity: false});
-        this.physics.add.collider(this.singleJumpCoin, this.platforms);
+        this.dwarfinator = this.physics.add.group({allowGravity: false});
 
         //timer
         this.timedEvent = this.time.addEvent({ delay: 2500, callback: this.spawn, callbackScope: this, loop: true });
@@ -71,6 +75,16 @@ export class Game extends Phaser.Scene{
     }
 
     update (){
+
+        //other key inputs for player 2
+        this.keyW = this.input.keyboard.addKey('W');  // Get key object W
+        this.keyX = this.input.keyboard.addKey('X');  // Get key object X
+        this.keyQ = this.input.keyboard.addKey('Q');  // Get key object Q
+        this.keyD = this.input.keyboard.addKey('D');  // Get key object D
+        this.keyA= this.input.keyboard.addKey('A');  // Get key object X
+        this.keyZ = this.input.keyboard.addKey('Z');  // Get key object X
+        this.keyF = this.input.keyboard.addKey('F'); // Get key object F
+
         //create key input: space, shift, arrow keys
         this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -83,11 +97,12 @@ export class Game extends Phaser.Scene{
         this.healthCoin.setVelocityX(this.gameSpeed*-60);
         this.singleJumpCoin.setVelocityX(this.gameSpeed*-60);
         this.tripleJumpCoin.setVelocityX(this.gameSpeed*-60);
+        this.slowTimeCoin.setVelocityX(this.gameSpeed*-60);
 
 
         //player jump
 
-        this.didPressJump = this.cursors.up.isDown
+        this.didPressJump = this.cursors.space.isDown
 
         if (this.didPressJump) {
             if (this.disablejump && this.player.body.onFloor()) {
@@ -135,6 +150,33 @@ export class Game extends Phaser.Scene{
             this.nextDrop = this.time.now + 3000;
         }
 
+        //enemy debuffs
+
+        if(this.debuffTimer< this.time.now+15000 && !this.gameOver){
+            if(this.speedActivate){
+                this.gameSpeed=4;
+                this.speedActivate = false;
+            }
+            this.player.setDisplaySize(64,64);
+
+        }
+    
+        //speed debuff
+        if(this.debuffTimer<this.time.now){
+            if(this.keyW.isDown){
+                this.speedActivate = true;
+                this.gameSpeed=10;
+                this.debuffTimer= this.time.now + 30000;
+            }
+
+        //dwarfinator debuff
+            if(this.keyX.isDown){
+                this.player.setDisplaySize(32,32);   
+                this.debuffTimer = this.time.now + 30000; 
+            }
+
+        }
+
         //enemy drop counter
         this.dropCounter=Math.floor((this.nextDrop-this.time.now)/100);
         if(this.dropCounter<0){
@@ -164,16 +206,21 @@ export class Game extends Phaser.Scene{
         this.physics.add.overlap(this.player, this.healthCoin, this.addHealth, null, this);
         this.physics.add.overlap(this.player, this.singleJumpCoin, this.singleJump, null, this);
         this.physics.add.overlap(this.player, this.tripleJumpCoin, this.tripleJump, null, this);
+        this.physics.add.overlap(this.player, this.slowTimeCoin, this.slowTime, null, this);
 
         if (this.abilityCounter < this.time.now) {
             this.player.setGravityY(200);
             this.disablejump = false;
             this.enabletripleJump = false;
             this.abilityText.visible = false;
+            if (!this.gameOver && this.speedActivate){
+                this.gameSpeed = 4;
+                this.speedActivate = false;
+            }
         }
         this.abilityNumber=Math.floor((this.abilityCounter-this.time.now)/100);
         this.abilityText.setText('power-up time: ' + this.abilityNumber);
-        
+        console.log(this.health);
     }
 
     
@@ -216,15 +263,12 @@ export class Game extends Phaser.Scene{
     }
 
     obstacleHit(player,obstacle){
-        health -= 1;
-        if (health < 1) {
+        this.health -= 1;
+        if (this.health < 1) {
         this.gameOver=true;
         this.gameSpeed=0;
+        }
         obstacle.disableBody(true, true);
-        }
-        else {
-            obstacle.disableBody(true, true);
-        }
     }
 
     collectDisable(player,disablePower){
@@ -254,6 +298,12 @@ export class Game extends Phaser.Scene{
         this.abilityText.visible = true;
         tripleJumpCoin.disableBody(true, true);
     }
+    slowTime(player, slowTimeCoin){
+        this.speedActivate = true;
+        this.abilityCounter = this.time.now + 5000;
+        this.gameSpeed = 1;
+        slowTimeCoin.disableBody(true,true);
+    }
 
     //creating some variables
     gameOver=false;
@@ -267,6 +317,8 @@ export class Game extends Phaser.Scene{
     dropCounter=0;
     nextDrop=0;
     disableDropTimer=0;
+    debuffTimer = 0;
+    speedActivate = false;
 
     disableEnemyTimer=0;
     disableEnemyText;
