@@ -85,10 +85,11 @@ export class Game extends Phaser.Scene{
         this.keyD = this.input.keyboard.addKey('D');  // Get key object D (Player1 movement)        Player1 right
         this.keyW = this.input.keyboard.addKey('W');  // Get key object W (speedup debuff)
         this.keyX = this.input.keyboard.addKey('X');  // Get key object X (dwarfinator debuff)
+        this.keyV = this.input.keyboard.addKey('V'); // Get key object V  (obstacles jump debuff)
         this.keyA= this.input.keyboard.addKey('A');  // Get key object A  (nothing yet)
         this.keyF = this.input.keyboard.addKey('F'); // Get key object F  (nothing yet)
-        this.keyB = this.input.keyboard.addKey('B'); // Get key object B  (player1 down)
-        this.keyV = this.input.keyboard.addKey('V'); // Get key object V  (obstacles jump)
+        this.keyB = this.input.keyboard.addKey('B'); // Get key object B  (nothing yet)
+        
 
         //create key input: space, shift, arrow keys
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -159,9 +160,9 @@ export class Game extends Phaser.Scene{
 
             //enemy movement
         if (this.cursors.left.isDown && this.disableEnemyTimer<this.time.now){
-            this.enemy.setVelocityX(-200+ this.changeVelocityP2);   //with p1 disruption
+            this.enemy.setVelocityX(-200);   
         }else if (this.cursors.right.isDown && this.disableEnemyTimer<this.time.now){
-            this.enemy.setVelocityX(200+ this.changeVelocityP2);    //with p1 disruption
+            this.enemy.setVelocityX(200);   
         }else{
             this.enemy.setVelocityX(0);
         }
@@ -363,7 +364,7 @@ export class Game extends Phaser.Scene{
 
     health = 1;
 
-    changeVelocityP2=0;
+
 
     abilityCounter = 0;
     abilityNumber = 0;
