@@ -16,6 +16,11 @@ export class LoadScene extends Phaser.Scene{
         this.load.image('coin','assets/powerups/coin.png');
         this.load.image('start_button','assets/menu/start.png');
         this.load.image('press_to_start','assets/menu/presstostart.png');
+        this.load.image('enemy','assets/game/crosshair.png');
+        this.load.image('disablePower','assets/powerups/disableEnemy.png');
+        this.load.image('lifepower','assets/powerups/lifepower.png');
+        this.load.image('slowtime','assets/powerups/slowtime.png');
+
 
         //create LoadingBar
         let loadingBar = this.add.graphics();
@@ -28,10 +33,10 @@ export class LoadScene extends Phaser.Scene{
         */
 
         //simulate loung loading time
-        for(let i = 0; i < 100; i++){
+       /* for(let i = 0; i < 100; i++){
             this.load.image('background' + i,'assets/general/first background expanded.png');
             console.log("test");
-        }
+        }*/
 
        this.load.on("progress", (percent)=>{
            loadingBar.fillRect(0, this.game.renderer.height / 2, this.game.renderer.width * percent, 50);

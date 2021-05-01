@@ -31,19 +31,16 @@ void launchButton(int button, bool pressRelease){
   if(pressRelease){
     switch (button) {
       case 2:    // left JOYSTICK
-        KeyboardAzertyFr.press(KEY_LEFT_ARROW);
+        KeyboardAzertyFr.press('q');
         break;
       case 3:    // down JOYSTICK
-        KeyboardAzertyFr.press(KEY_DOWN_ARROW);
+        KeyboardAzertyFr.press('s');
         break;
       case 4:    // right JOYSTICK
-        KeyboardAzertyFr.press(KEY_RIGHT_ARROW);
+        KeyboardAzertyFr.press('d');
         break;
       case 5:    // up JOYSTICK
-        KeyboardAzertyFr.press(KEY_UP_ARROW);
-        KeyboardAzertyFr.press(' ');
-        delay(50);
-        KeyboardAzertyFr.release(' ');
+        KeyboardAzertyFr.press('z');
         break;
       case 6:    // left BUTTONS
         KeyboardAzertyFr.press(KEY_LEFT_ARROW);
@@ -70,16 +67,16 @@ void launchButton(int button, bool pressRelease){
   else{
     switch (button) {
       case 2:    // left JOYSTICK
-        KeyboardAzertyFr.release(KEY_LEFT_ARROW);
+        KeyboardAzertyFr.release('q');
         break;
       case 3:    // down JOYSTICK
-        KeyboardAzertyFr.release(KEY_DOWN_ARROW);
+        KeyboardAzertyFr.release('s');
         break;
       case 4:    // right JOYSTICK
-        KeyboardAzertyFr.release(KEY_RIGHT_ARROW);
+        KeyboardAzertyFr.release('d');
         break;
       case 5:    // up JOYSTICK
-        KeyboardAzertyFr.release(KEY_UP_ARROW);
+        KeyboardAzertyFr.release('z');
         break;
       case 6:    // left BUTTONS
         KeyboardAzertyFr.release(KEY_LEFT_ARROW);

@@ -28,5 +28,10 @@ export class MenuScene extends Phaser.Scene{
     }
     update (){
         this.background.tilePositionX += 0.2;  
+
+        this.keyZ = this.input.keyboard.addKey('Z');
+        if(this.keyZ.isDown){
+            this.scene.start(CST.SCENES.GAME, "Hello From Menu Screen!");
+        }
     }
 }
