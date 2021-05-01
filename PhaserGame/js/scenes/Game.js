@@ -62,7 +62,6 @@ export class Game extends Phaser.Scene{
 
         this.slowTimeCoin = this.physics.add.group({allowGravity: false});
         this.physics.add.collider(this.slowTimeCoin, this.platforms);
-        this.slowTimeCoin.create(1100, 400, 'slowtime');
 
         //create debuffs
         this.singleJumpCoin = this.physics.add.group({allowGravity: false});
@@ -70,7 +69,7 @@ export class Game extends Phaser.Scene{
 
         //timer
         this.timedEvent = this.time.addEvent({ delay: 2500, callback: this.spawn, callbackScope: this, loop: true });
-        this.powerEvent = this.time.addEvent({ delay: 60000, callback: this.power, callbackScope: this, loop: true });
+        this.powerEvent = this.time.addEvent({ delay: 60000, callback: this.power, callbackScope: this, loop: true }); //maybe put lower
         this.abilityText.visible = false;
     }
 
@@ -271,7 +270,7 @@ export class Game extends Phaser.Scene{
 
     power(){
         if(!this.gameOver){
-            this.powerNumber = Math.ceil(Math.random() * 10);
+            this.powerNumber = Phaser.Math.Between(1,4);
             var powerX = Phaser.Math.Between(1100,1500);
             var powerY = Phaser.Math.Between(300,500);
             if (this.powerNumber = 1) {
@@ -282,6 +281,8 @@ export class Game extends Phaser.Scene{
             }
             else if (this.powerNumber = 3) {
                 this.tripleJumpCoin.create(powerX, powerY, 'triplejump')
+            }else if(this.powerNumber=4){
+                this.slowTimeCoin.create(powerX,powerY,'slowtime');
             }
         }
     }
