@@ -19,6 +19,8 @@ export class LoadScene extends Phaser.Scene{
         this.load.image('enemy','assets/game/crosshair.png');
         this.load.image('disablePower','assets/powerups/disableEnemy.png');
         this.load.image('lifepower','assets/powerups/lifepower.png');
+        this.load.image('slowtime','assets/powerups/slowtime.png');
+
 
         //create LoadingBar
         let loadingBar = this.add.graphics();

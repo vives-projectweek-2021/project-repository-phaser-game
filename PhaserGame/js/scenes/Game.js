@@ -77,13 +77,15 @@ export class Game extends Phaser.Scene{
     update (){
 
         //other key inputs for player 2
-        this.keyW = this.input.keyboard.addKey('W');  // Get key object W
-        this.keyX = this.input.keyboard.addKey('X');  // Get key object X
-        this.keyQ = this.input.keyboard.addKey('Q');  // Get key object Q
-        this.keyD = this.input.keyboard.addKey('D');  // Get key object D
-        this.keyA= this.input.keyboard.addKey('A');  // Get key object X
-        this.keyZ = this.input.keyboard.addKey('Z');  // Get key object X
-        this.keyF = this.input.keyboard.addKey('F'); // Get key object F
+        this.keyW = this.input.keyboard.addKey('W');  // Get key object W (speedup debuff)
+        this.keyX = this.input.keyboard.addKey('X');  // Get key object X (dwarfinator debuff)
+        this.keyQ = this.input.keyboard.addKey('Q');  // Get key object Q (push player 2)
+        this.keyD = this.input.keyboard.addKey('D');  // Get key object D (push player 2)
+        this.keyA= this.input.keyboard.addKey('A');  // Get key object A  (nothing yet)
+        this.keyZ = this.input.keyboard.addKey('Z');  // Get key object Z (nothing yet)
+        this.keyF = this.input.keyboard.addKey('F'); // Get key object F  (nothing yet)
+        this.keyB = this.input.keyboard.addKey('B'); // Get key object B  (player1 down)
+        this.keyV = this.input.keyboard.addKey('V'); // Get key object V  (obstacles jump)
 
         //create key input: space, shift, arrow keys
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -112,16 +114,16 @@ export class Game extends Phaser.Scene{
             else if (this.enabletripleJump && this.player.body.onFloor()) {
                 this.jumps = 2;
                 this.player.setVelocityY(-400);
-                this.jumpCounter = this.time.now + 500
+                this.jumpCounter = this.time.now + 300
                 }
             else if (this.jumps > 0 && this.enabletripleJump && !this.player.body.onFloor() && this.jumpCounter < this.time.now) {
                 this.jumps -= 1;
                 this.player.setVelocityY(-400);
-                this.jumpCounter = this.time.now + 500
+                this.jumpCounter = this.time.now + 300
             } 
             else if (!this.disablejump && this.player.body.onFloor()) {
                     this.player.body.setVelocityY(-400);
-                    this.jumpCounter = this.time.now + 500;
+                    this.jumpCounter = this.time.now + 300;
                 }
             else if (this.jumps > 0 && !this.player.body.onFloor() && this.jumpCounter < this.time.now && !this.disablejump) {
                 // player can only jump 2x (double jump)
@@ -136,12 +138,27 @@ export class Game extends Phaser.Scene{
                 this.jumps = 2;
         }
 
+        //player faster down
+        if(this.keyB.isDown){
+            this.player.setVelocityY(300);
+        }
+
+        //player 1 distrupting player2 movement
+        if(this.keyD.isDown){
+            this.changeVelocityP2= 500;
+        }else if(this.keyQ.isDown){
+           this.changeVelocityP2= -500;
+        }
+        else{
+            this.changeVelocityP2=0;
+        }
+
 
             //enemy movement
         if (this.cursors.left.isDown && this.disableEnemyTimer<this.time.now){
-            this.enemy.setVelocityX(-200);
+            this.enemy.setVelocityX(-200+ this.changeVelocityP2);   //with p1 disruption
         }else if (this.cursors.right.isDown && this.disableEnemyTimer<this.time.now){
-            this.enemy.setVelocityX(200);
+            this.enemy.setVelocityX(200+ this.changeVelocityP2);    //with p1 disruption
         }else{this.enemy.setVelocityX(0);}
         
             //enemy drop
@@ -173,6 +190,12 @@ export class Game extends Phaser.Scene{
             if(this.keyX.isDown){
                 this.player.setDisplaySize(32,32);   
                 this.debuffTimer = this.time.now + 30000; 
+            }
+
+        //obstacle jump debuff
+            if(this.keyV.isDown){
+                this.obstacles.setVelocityY(-300);
+                this.debuffTimer= this.time.now + 30000;
             }
 
         }
@@ -333,6 +356,8 @@ export class Game extends Phaser.Scene{
     jumpCounter = 0;
 
     health = 1;
+
+    changeVelocityP2=0;
 
     abilityCounter = 0;
     abilityNumber = 0;
