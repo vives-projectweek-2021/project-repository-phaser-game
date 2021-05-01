@@ -75,6 +75,7 @@ export class Game extends Phaser.Scene{
     }
 
     update (){
+        console.log("Gamespeed: "+this.gameSpeed);
 
         //other key inputs for player 2
         // Z, Q, S, D dor player 2 joystick
@@ -177,7 +178,7 @@ export class Game extends Phaser.Scene{
 
         if(this.debuffTimer< this.time.now+15000 && !this.gameOver){
             if(this.speedActivate){
-                this.gameSpeed=8;
+                this.gameSpeed=6;
                 this.speedActivate = false;
             }
             this.player.setDisplaySize(64,64);
@@ -223,7 +224,7 @@ export class Game extends Phaser.Scene{
 
         //distance counter on screen, stops when gameOver
         if(!this.gameOver){
-            this.distance= Math.floor((this.time.now)*this.gameSpeed/400)   //400 because base gameSpeed is 4
+            this.distance= Math.floor((this.time.now)*this.gameSpeed/600)   //600 because base gameSpeed is 6
         }
         this.distanceText.setText('Distance: '+ this.distance)     
 
@@ -242,9 +243,9 @@ export class Game extends Phaser.Scene{
             this.disablejump = false;
             this.enabletripleJump = false;
             this.abilityText.visible = false;
-            if (!this.gameOver && this.speedActivate){
-                this.gameSpeed = 4;
-                this.speedActivate = false;
+            if (!this.gameOver && this.slowActivate){
+                this.gameSpeed = 6;
+                this.slowActivate = false;
             }
         }
         this.abilityNumber=Math.floor((this.abilityCounter-this.time.now)/100);
@@ -279,7 +280,7 @@ export class Game extends Phaser.Scene{
             else if (this.powerNumber = 2) {
                 this.singleJumpCoin.create(powerX, powerY, 'singlejump')
             }
-            else if (this.powerNumber = 3 || true) {
+            else if (this.powerNumber = 3) {
                 this.tripleJumpCoin.create(powerX, powerY, 'triplejump')
             }
         }
@@ -329,9 +330,9 @@ export class Game extends Phaser.Scene{
         tripleJumpCoin.disableBody(true, true);
     }
     slowTime(player, slowTimeCoin){
-        this.speedActivate = true;
+        this.slowActivate = true;
         this.abilityCounter = this.time.now + 5000;
-        this.gameSpeed = 1;
+        this.gameSpeed = 3;
         slowTimeCoin.disableBody(true,true);
     }
 
@@ -349,6 +350,7 @@ export class Game extends Phaser.Scene{
     disableDropTimer=0;
     debuffTimer = 0;
     speedActivate = false;
+    slowActivate= false;
 
     disableEnemyTimer=0;
     disableEnemyText;
