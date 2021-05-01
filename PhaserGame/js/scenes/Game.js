@@ -330,6 +330,7 @@ export class Game extends Phaser.Scene{
         tripleJumpCoin.disableBody(true, true);
     }
     slowTime(player, slowTimeCoin){
+        this.abilityText.visible = true;
         this.slowActivate = true;
         this.abilityCounter = this.time.now + 5000;
         this.gameSpeed = 3;
@@ -367,7 +368,7 @@ export class Game extends Phaser.Scene{
     health = 1;
 
 
-
+    abilityText;
     abilityCounter = 0;
     abilityNumber = 0;
 }
