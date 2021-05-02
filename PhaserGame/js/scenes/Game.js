@@ -88,7 +88,7 @@ export class Game extends Phaser.Scene{
         this.keyA= this.input.keyboard.addKey('A');  // Get key object A  (nothing yet)
         this.keyF = this.input.keyboard.addKey('F'); // Get key object F  (nothing yet)
         this.keyB = this.input.keyboard.addKey('B'); // Get key object B  (player1 down)
-        this.keyV = this.input.keyboard.addKey('V'); // Get key object V  (obstacles jump)
+        this.keyV = this.input.keyboard.addKey('V'); // Get key object V  (obstacles jump)zsqdzqsd
 
         //create key input: space, shift, arrow keys
         this.cursors = this.input.keyboard.createCursorKeys();

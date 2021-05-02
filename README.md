@@ -132,3 +132,5 @@ Php mysql database that stores playerdata
 [Complete Course Phaser 1hour](https://www.youtube.com/watch?v=hI_LS8bdkM4)
 
 [Example endless runner](https://www.emanueleferonato.com/2019/01/23/html5-endless-runner-built-with-phaser-and-arcade-physics-step-5-adding-deadly-fire-being-kind-with-players-by-setting-its-body-smaller-than-the-image/)
+
+[Raspberry pi kiosk mode](https://pimylifeup.com/raspberry-pi-kiosk/)
