@@ -9,7 +9,7 @@ export class Game extends Phaser.Scene{
         console.log(data);
     }
     create(){
-        this.gameSpeed=4;
+        this.gameSpeed=6;
         //create platforms in group
         this.platforms=this.physics.add.staticGroup();
         this.platforms.create(400,560,'ground').setScale(5,1).refreshBody();
@@ -77,12 +77,15 @@ export class Game extends Phaser.Scene{
     update (){
 
         //other key inputs for player 2
+        // Z, Q, S, D dor player 2 joystick
+        //arrow keys for player 1 joystick
+        this.keyZ = this.input.keyboard.addKey('Z');  // Get key object Z (jump)                    Player1 up
+        this.keyS = this.input.keyboard.addKey('S');  // Get key object S (down)                    Player1 down
+        this.keyQ = this.input.keyboard.addKey('Q');  // Get key object Q (Player1 movement)        Player1 left
+        this.keyD = this.input.keyboard.addKey('D');  // Get key object D (Player1 movement)        Player1 right
         this.keyW = this.input.keyboard.addKey('W');  // Get key object W (speedup debuff)
         this.keyX = this.input.keyboard.addKey('X');  // Get key object X (dwarfinator debuff)
-        this.keyQ = this.input.keyboard.addKey('Q');  // Get key object Q (push player 2)
-        this.keyD = this.input.keyboard.addKey('D');  // Get key object D (push player 2)
         this.keyA= this.input.keyboard.addKey('A');  // Get key object A  (nothing yet)
-        this.keyZ = this.input.keyboard.addKey('Z');  // Get key object Z (nothing yet)
         this.keyF = this.input.keyboard.addKey('F'); // Get key object F  (nothing yet)
         this.keyB = this.input.keyboard.addKey('B'); // Get key object B  (player1 down)
         this.keyV = this.input.keyboard.addKey('V'); // Get key object V  (obstacles jump)
@@ -106,7 +109,7 @@ export class Game extends Phaser.Scene{
 
         this.didPressJump = this.cursors.space.isDown
 
-        if (this.didPressJump) {
+        if (this.didPressJump || this.keyZ.isDown) {
             if (this.disablejump && this.player.body.onFloor()) {
                 this.jumps = 0;
                 this.player.body.setVelocityY(-400);
@@ -139,18 +142,18 @@ export class Game extends Phaser.Scene{
         }
 
         //player faster down
-        if(this.keyB.isDown){
+        if(this.keyS.isDown){
             this.player.setVelocityY(300);
         }
 
-        //player 1 distrupting player2 movement
+        //player 1 left right
         if(this.keyD.isDown){
-            this.changeVelocityP2= 500;
+            this.player.setVelocityX(200);
         }else if(this.keyQ.isDown){
-           this.changeVelocityP2= -500;
+            this.player.setVelocityX(-200);
         }
         else{
-            this.changeVelocityP2=0;
+            this.player.setVelocityX(0);
         }
 
 
@@ -159,7 +162,9 @@ export class Game extends Phaser.Scene{
             this.enemy.setVelocityX(-200+ this.changeVelocityP2);   //with p1 disruption
         }else if (this.cursors.right.isDown && this.disableEnemyTimer<this.time.now){
             this.enemy.setVelocityX(200+ this.changeVelocityP2);    //with p1 disruption
-        }else{this.enemy.setVelocityX(0);}
+        }else{
+            this.enemy.setVelocityX(0);
+        }
         
             //enemy drop
         if (this.cursors.down.isDown && this.nextDrop<this.time.now && this.disableEnemyTimer<this.time.now){
@@ -171,7 +176,7 @@ export class Game extends Phaser.Scene{
 
         if(this.debuffTimer< this.time.now+15000 && !this.gameOver){
             if(this.speedActivate){
-                this.gameSpeed=4;
+                this.gameSpeed=8;
                 this.speedActivate = false;
             }
             this.player.setDisplaySize(64,64);
@@ -182,7 +187,7 @@ export class Game extends Phaser.Scene{
         if(this.debuffTimer<this.time.now){
             if(this.keyW.isDown){
                 this.speedActivate = true;
-                this.gameSpeed=10;
+                this.gameSpeed=12;
                 this.debuffTimer= this.time.now + 30000;
             }
 
@@ -244,6 +249,7 @@ export class Game extends Phaser.Scene{
         this.abilityNumber=Math.floor((this.abilityCounter-this.time.now)/100);
         this.abilityText.setText('power-up time: ' + this.abilityNumber);
         console.log(this.health);
+        
     }
 
     
