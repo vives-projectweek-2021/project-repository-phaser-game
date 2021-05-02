@@ -62,7 +62,6 @@ export class Game extends Phaser.Scene{
 
         this.slowTimeCoin = this.physics.add.group({allowGravity: false});
         this.physics.add.collider(this.slowTimeCoin, this.platforms);
-        this.slowTimeCoin.create(1100, 400, 'slowtime');
 
         //create debuffs
         this.singleJumpCoin = this.physics.add.group({allowGravity: false});
@@ -70,11 +69,12 @@ export class Game extends Phaser.Scene{
 
         //timer
         this.timedEvent = this.time.addEvent({ delay: 2500, callback: this.spawn, callbackScope: this, loop: true });
-        this.powerEvent = this.time.addEvent({ delay: 60000, callback: this.power, callbackScope: this, loop: true });
+        this.powerEvent = this.time.addEvent({ delay: 60000, callback: this.power, callbackScope: this, loop: true }); //maybe put lower
         this.abilityText.visible = false;
     }
 
     update (){
+        console.log("Gamespeed: "+this.gameSpeed);
 
         //other key inputs for player 2
         // Z, Q, S, D dor player 2 joystick
@@ -85,10 +85,11 @@ export class Game extends Phaser.Scene{
         this.keyD = this.input.keyboard.addKey('D');  // Get key object D (Player1 movement)        Player1 right
         this.keyW = this.input.keyboard.addKey('W');  // Get key object W (speedup debuff)
         this.keyX = this.input.keyboard.addKey('X');  // Get key object X (dwarfinator debuff)
+        this.keyV = this.input.keyboard.addKey('V'); // Get key object V  (obstacles jump debuff)
         this.keyA= this.input.keyboard.addKey('A');  // Get key object A  (nothing yet)
         this.keyF = this.input.keyboard.addKey('F'); // Get key object F  (nothing yet)
-        this.keyB = this.input.keyboard.addKey('B'); // Get key object B  (player1 down)
-        this.keyV = this.input.keyboard.addKey('V'); // Get key object V  (obstacles jump)zsqdzqsd
+        this.keyB = this.input.keyboard.addKey('B'); // Get key object B  (nothing yet)
+        
 
         //create key input: space, shift, arrow keys
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -159,9 +160,9 @@ export class Game extends Phaser.Scene{
 
             //enemy movement
         if (this.cursors.left.isDown && this.disableEnemyTimer<this.time.now){
-            this.enemy.setVelocityX(-200+ this.changeVelocityP2);   //with p1 disruption
+            this.enemy.setVelocityX(-200);   
         }else if (this.cursors.right.isDown && this.disableEnemyTimer<this.time.now){
-            this.enemy.setVelocityX(200+ this.changeVelocityP2);    //with p1 disruption
+            this.enemy.setVelocityX(200);   
         }else{
             this.enemy.setVelocityX(0);
         }
@@ -176,7 +177,7 @@ export class Game extends Phaser.Scene{
 
         if(this.debuffTimer< this.time.now+15000 && !this.gameOver){
             if(this.speedActivate){
-                this.gameSpeed=8;
+                this.gameSpeed=6;
                 this.speedActivate = false;
             }
             this.player.setDisplaySize(64,64);
@@ -222,7 +223,7 @@ export class Game extends Phaser.Scene{
 
         //distance counter on screen, stops when gameOver
         if(!this.gameOver){
-            this.distance= Math.floor((this.time.now)*this.gameSpeed/400)   //400 because base gameSpeed is 4
+            this.distance= Math.floor((this.time.now)*this.gameSpeed/600)   //600 because base gameSpeed is 6
         }
         this.distanceText.setText('Distance: '+ this.distance)     
 
@@ -241,9 +242,9 @@ export class Game extends Phaser.Scene{
             this.disablejump = false;
             this.enabletripleJump = false;
             this.abilityText.visible = false;
-            if (!this.gameOver && this.speedActivate){
-                this.gameSpeed = 4;
-                this.speedActivate = false;
+            if (!this.gameOver && this.slowActivate){
+                this.gameSpeed = 6;
+                this.slowActivate = false;
             }
         }
         this.abilityNumber=Math.floor((this.abilityCounter-this.time.now)/100);
@@ -269,7 +270,7 @@ export class Game extends Phaser.Scene{
 
     power(){
         if(!this.gameOver){
-            this.powerNumber = Math.ceil(Math.random() * 10);
+            this.powerNumber = Phaser.Math.Between(1,4);
             var powerX = Phaser.Math.Between(1100,1500);
             var powerY = Phaser.Math.Between(300,500);
             if (this.powerNumber = 1) {
@@ -278,8 +279,10 @@ export class Game extends Phaser.Scene{
             else if (this.powerNumber = 2) {
                 this.singleJumpCoin.create(powerX, powerY, 'singlejump')
             }
-            else if (this.powerNumber = 3 || true) {
+            else if (this.powerNumber = 3) {
                 this.tripleJumpCoin.create(powerX, powerY, 'triplejump')
+            }else if(this.powerNumber=4){
+                this.slowTimeCoin.create(powerX,powerY,'slowtime');
             }
         }
     }
@@ -328,9 +331,10 @@ export class Game extends Phaser.Scene{
         tripleJumpCoin.disableBody(true, true);
     }
     slowTime(player, slowTimeCoin){
-        this.speedActivate = true;
+        this.abilityText.visible = true;
+        this.slowActivate = true;
         this.abilityCounter = this.time.now + 5000;
-        this.gameSpeed = 1;
+        this.gameSpeed = 3;
         slowTimeCoin.disableBody(true,true);
     }
 
@@ -348,6 +352,7 @@ export class Game extends Phaser.Scene{
     disableDropTimer=0;
     debuffTimer = 0;
     speedActivate = false;
+    slowActivate= false;
 
     disableEnemyTimer=0;
     disableEnemyText;
@@ -363,8 +368,8 @@ export class Game extends Phaser.Scene{
 
     health = 1;
 
-    changeVelocityP2=0;
 
+    abilityText;
     abilityCounter = 0;
     abilityNumber = 0;
 }
