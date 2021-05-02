@@ -71,7 +71,7 @@ function create ()
 
     //create disable power
     disablePower= this.physics.add.group({allowGravity: false});
-    disablePower.create(700,500,'disabelenemy');
+    //disablePower.create(700,500,'disabelenemy');
     
     
 
@@ -101,6 +101,10 @@ function create ()
     //timer
     
     timedEvent = this.time.addEvent({ delay: 2500, callback: spawn, callbackScope: this, loop: true });
+
+
+
+   
 }
 
 var timedEvent;
@@ -146,15 +150,17 @@ function update ()
     this.bg.tilePositionX += this.gameSpeed;
     
     if (cursors.left.isDown&& disableTimer<this.time.now){
-        enemy.setVelocityX(-200);
+        enemy.setVelocityX(-200+changeVelo);
     }else
 
     if (cursors.right.isDown && disableTimer<this.time.now){
-        enemy.setVelocityX(200);
+        enemy.setVelocityX(200+ changeVelo);
     }else{enemy.setVelocityX(0);}
     
     if (cursors.down.isDown && nextDrop<this.time.now && disableTimer<this.time.now){
         obstacles.create(enemy.x, enemy.y, 'obstacle');
+
+
         
         nextDrop = this.time.now + 3000;
     
@@ -173,6 +179,62 @@ function update ()
         disableCounter=0;
     }
     disableText.setText('DropTime: ' + disableCounter);
+    
+    //other key inputs for player 2
+    keyW = this.input.keyboard.addKey('W');  // Get key object W
+    keyX = this.input.keyboard.addKey('X');  // Get key object X
+    keyQ = this.input.keyboard.addKey('Q');  // Get key object Q
+    keyD = this.input.keyboard.addKey('D');  // Get key object D
+    keyA= this.input.keyboard.addKey('A');  // Get key object A
+    keyZ = this.input.keyboard.addKey('Z');  // Get key object Z
+    keyV = this.input.keyboard.addKey('V');  // Get key object V
+
+
+    //change velocity of player2
+    if(keyD.isDown){
+        changeVelo= 500;
+    }else if(keyQ.isDown){
+        changeVelo= -500;
+    }
+    else{
+        changeVelo=0;
+    }
+
+    if(keyV.isDown){
+        player.setVelocityY(300);
+    }
+
+    //change gamespeed
+    /* if(keyA.isDown){
+        this.gameSpeed += 1;
+    }else if(keyZ.isDown){
+        this.gameSpeed-=1;
+    }
+    else{
+        this.gameSpeed=4;
+    } */
+
+
+
+    if(debuffTimer< this.time.now+15000 && !gameOver){
+        this.gameSpeed=4;
+    }
+
+    //speed debuff
+    if(debuffTimer<this.time.now){
+        if(keyW.isDown){
+        
+            this.gameSpeed=10;
+            debuffTimer= this.time.now + 30000;
+        }
+    
+        if(keyX.isDown){
+            
+            debuffTimer= this.time.now + 30000;
+            obstacles.setVelocityY(-300);
+    
+        }
+    }
     
 }
 
@@ -194,6 +256,8 @@ function obstacleHit(player,obstacle){
 
 function collectDisable(player, disable){
     disableTimer= this.time.now + 10000;
+    disable.disableBody(true, true);
+
 }
 // function collectJump(player,jumpPower){
 //     disablemove=true;
@@ -220,5 +284,8 @@ var disableText;
 var disableCounter=0;
 var disableTimer=0;
 
+var debuffTimer=0;
+
+var changeVelo=0;
 
 var game = new Phaser.Game(config);
