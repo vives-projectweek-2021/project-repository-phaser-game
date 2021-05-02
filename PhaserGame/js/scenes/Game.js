@@ -270,7 +270,7 @@ export class Game extends Phaser.Scene{
 
     power(){
         if(!this.gameOver){
-            this.powerNumber = Phaser.Math.Between(1,4);
+            this.powerNumber = Phaser.Math.Between(1,5);
             var powerX = Phaser.Math.Between(1100,1500);
             var powerY = Phaser.Math.Between(300,500);
             if (this.powerNumber = 1) {
@@ -283,6 +283,8 @@ export class Game extends Phaser.Scene{
                 this.tripleJumpCoin.create(powerX, powerY, 'triplejump')
             }else if(this.powerNumber=4){
                 this.slowTimeCoin.create(powerX,powerY,'slowtime');
+            }else if(this.powerNumber=5){
+                this.disablePower.create(powerX,powerY,'disablePower');
             }
         }
     }
