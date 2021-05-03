@@ -14,7 +14,11 @@ export class Game extends Phaser.Scene{
         this.platforms=this.physics.add.staticGroup();
         this.platforms.create(400,560,'ground').setScale(5,1).refreshBody();
 
+        //background (3layers)
         this.bg = this.add.tileSprite(500,300,1000,600, 'background');
+        this.craters= this.add.tileSprite(500,300,1000,600,'craters');
+        this.spaceground=this.add.tileSprite(500,300,1000,600,'spaceground');
+        this.planet=this.add.tileSprite(500,300,1000,600,'planet');
     
         //create player
         this.player = this.physics.add.sprite(130, 400, 'player');
@@ -115,13 +119,16 @@ export class Game extends Phaser.Scene{
         //set velocity/movement for treadmill effect
         this.obstacles.setVelocityX(this.gameSpeed*-60);
         this.coins.setVelocityX(this.gameSpeed*-60);
-        this.bg.tilePositionX += this.gameSpeed;
         this.disablePower.setVelocityX(this.gameSpeed*-60);
         this.lowGravityCoin.setVelocityX(this.gameSpeed*-60);
         this.healthCoin.setVelocityX(this.gameSpeed*-60);
         this.singleJumpCoin.setVelocityX(this.gameSpeed*-60);
         this.tripleJumpCoin.setVelocityX(this.gameSpeed*-60);
         this.slowTimeCoin.setVelocityX(this.gameSpeed*-60);
+        this.bg.tilePositionX += this.gameSpeed/12;
+        this.craters.tilePositionX += this.gameSpeed/6;
+        this.spaceground.tilePositionX+=this.gameSpeed;
+
 
 
         //player jump
