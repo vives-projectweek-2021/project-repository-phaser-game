@@ -81,6 +81,14 @@ export class Game extends Phaser.Scene{
         this.physics.add.overlap(this.player, this.singleJumpCoin, this.singleJump, null, this);
         this.physics.add.overlap(this.player, this.tripleJumpCoin, this.tripleJump, null, this);
         this.physics.add.overlap(this.player, this.slowTimeCoin, this.slowTime, null, this);
+
+        //create border
+        this.border = this.physics.add.sprite(-30, 200, 'border');
+        this.physics.add.collider(this.border, this.platforms);
+
+        //out of bounds disable
+        this.physics.add.overlap(this.border, this.obstacles , this.OutOfBounds, null, this);
+        this.physics.add.overlap(this.border, this.coins , this.OutOfBounds, null, this);
     }
 
     update (){
@@ -340,6 +348,10 @@ export class Game extends Phaser.Scene{
         this.abilityCounter = this.time.now + 5000;
         this.gameSpeed = 3;
         slowTimeCoin.disableBody(true,true);
+    }
+    OutOfBounds(border, object){
+        object.disableBody(true,true);
+
     }
 
     //creating some variables

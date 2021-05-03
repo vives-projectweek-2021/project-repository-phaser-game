@@ -20,6 +20,7 @@ export class LoadScene extends Phaser.Scene{
         this.load.image('disablePower','assets/powerups/disableEnemy.png');
         this.load.image('lifepower','assets/powerups/lifepower.png');
         this.load.image('slowtime','assets/powerups/slowtime.png');
+        this.load.image('border','assets/game/border.png');
 
 
         //create LoadingBar
