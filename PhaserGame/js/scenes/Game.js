@@ -14,7 +14,11 @@ export class Game extends Phaser.Scene{
         this.platforms=this.physics.add.staticGroup();
         this.platforms.create(400,560,'ground').setScale(5,1).refreshBody();
 
+        //background (3layers)
         this.bg = this.add.tileSprite(500,300,1000,600, 'background');
+        this.craters= this.add.tileSprite(500,300,1000,600,'craters');
+        this.spaceground=this.add.tileSprite(500,300,1000,600,'spaceground');
+        this.planet=this.add.tileSprite(500,300,1000,600,'planet');
     
         //create player
         this.player = this.physics.add.sprite(130, 400, 'player');
@@ -71,6 +75,24 @@ export class Game extends Phaser.Scene{
         this.timedEvent = this.time.addEvent({ delay: 2500, callback: this.spawn, callbackScope: this, loop: true });
         this.powerEvent = this.time.addEvent({ delay: 60000, callback: this.power, callbackScope: this, loop: true }); //maybe put lower
         this.abilityText.visible = false;
+
+        //player hit-detection
+        this.physics.add.overlap(this.player, this.coins, this.collectCoin, null, this);
+        this.physics.add.overlap(this.player, this.obstacles, this.obstacleHit, null, this);
+        this.physics.add.overlap(this.player, this.disablePower, this.collectDisable, null, this);
+        this.physics.add.overlap(this.player, this.lowGravityCoin, this.lowGravity, null, this);
+        this.physics.add.overlap(this.player, this.healthCoin, this.addHealth, null, this);
+        this.physics.add.overlap(this.player, this.singleJumpCoin, this.singleJump, null, this);
+        this.physics.add.overlap(this.player, this.tripleJumpCoin, this.tripleJump, null, this);
+        this.physics.add.overlap(this.player, this.slowTimeCoin, this.slowTime, null, this);
+
+        //create border
+        this.border = this.physics.add.sprite(-30, 200, 'border');
+        this.physics.add.collider(this.border, this.platforms);
+
+        //out of bounds disable
+        this.physics.add.overlap(this.border, this.obstacles , this.OutOfBounds, null, this);
+        this.physics.add.overlap(this.border, this.coins , this.OutOfBounds, null, this);
     }
 
     update (){
@@ -97,13 +119,16 @@ export class Game extends Phaser.Scene{
         //set velocity/movement for treadmill effect
         this.obstacles.setVelocityX(this.gameSpeed*-60);
         this.coins.setVelocityX(this.gameSpeed*-60);
-        this.bg.tilePositionX += this.gameSpeed;
         this.disablePower.setVelocityX(this.gameSpeed*-60);
         this.lowGravityCoin.setVelocityX(this.gameSpeed*-60);
         this.healthCoin.setVelocityX(this.gameSpeed*-60);
         this.singleJumpCoin.setVelocityX(this.gameSpeed*-60);
         this.tripleJumpCoin.setVelocityX(this.gameSpeed*-60);
         this.slowTimeCoin.setVelocityX(this.gameSpeed*-60);
+        this.bg.tilePositionX += this.gameSpeed/12;
+        this.craters.tilePositionX += this.gameSpeed/6;
+        this.spaceground.tilePositionX+=this.gameSpeed;
+
 
 
         //player jump
@@ -227,15 +252,7 @@ export class Game extends Phaser.Scene{
         }
         this.distanceText.setText('Distance: '+ this.distance)     
 
-        //player hit-detection
-        this.physics.add.overlap(this.player, this.coins, this.collectCoin, null, this);
-        this.physics.add.overlap(this.player, this.obstacles, this.obstacleHit, null, this);
-        this.physics.add.overlap(this.player, this.disablePower, this.collectDisable, null, this);
-        this.physics.add.overlap(this.player, this.lowGravityCoin, this.lowGravity, null, this);
-        this.physics.add.overlap(this.player, this.healthCoin, this.addHealth, null, this);
-        this.physics.add.overlap(this.player, this.singleJumpCoin, this.singleJump, null, this);
-        this.physics.add.overlap(this.player, this.tripleJumpCoin, this.tripleJump, null, this);
-        this.physics.add.overlap(this.player, this.slowTimeCoin, this.slowTime, null, this);
+        
 
         if (this.abilityCounter < this.time.now) {
             this.player.setGravityY(200);
@@ -338,6 +355,10 @@ export class Game extends Phaser.Scene{
         this.abilityCounter = this.time.now + 5000;
         this.gameSpeed = 3;
         slowTimeCoin.disableBody(true,true);
+    }
+    OutOfBounds(border, object){
+        object.disableBody(true,true);
+
     }
 
     //creating some variables
