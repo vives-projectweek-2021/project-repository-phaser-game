@@ -71,6 +71,16 @@ export class Game extends Phaser.Scene{
         this.timedEvent = this.time.addEvent({ delay: 2500, callback: this.spawn, callbackScope: this, loop: true });
         this.powerEvent = this.time.addEvent({ delay: 60000, callback: this.power, callbackScope: this, loop: true }); //maybe put lower
         this.abilityText.visible = false;
+
+        //player hit-detection
+        this.physics.add.overlap(this.player, this.coins, this.collectCoin, null, this);
+        this.physics.add.overlap(this.player, this.obstacles, this.obstacleHit, null, this);
+        this.physics.add.overlap(this.player, this.disablePower, this.collectDisable, null, this);
+        this.physics.add.overlap(this.player, this.lowGravityCoin, this.lowGravity, null, this);
+        this.physics.add.overlap(this.player, this.healthCoin, this.addHealth, null, this);
+        this.physics.add.overlap(this.player, this.singleJumpCoin, this.singleJump, null, this);
+        this.physics.add.overlap(this.player, this.tripleJumpCoin, this.tripleJump, null, this);
+        this.physics.add.overlap(this.player, this.slowTimeCoin, this.slowTime, null, this);
     }
 
     update (){
@@ -227,15 +237,7 @@ export class Game extends Phaser.Scene{
         }
         this.distanceText.setText('Distance: '+ this.distance)     
 
-        //player hit-detection
-        this.physics.add.overlap(this.player, this.coins, this.collectCoin, null, this);
-        this.physics.add.overlap(this.player, this.obstacles, this.obstacleHit, null, this);
-        this.physics.add.overlap(this.player, this.disablePower, this.collectDisable, null, this);
-        this.physics.add.overlap(this.player, this.lowGravityCoin, this.lowGravity, null, this);
-        this.physics.add.overlap(this.player, this.healthCoin, this.addHealth, null, this);
-        this.physics.add.overlap(this.player, this.singleJumpCoin, this.singleJump, null, this);
-        this.physics.add.overlap(this.player, this.tripleJumpCoin, this.tripleJump, null, this);
-        this.physics.add.overlap(this.player, this.slowTimeCoin, this.slowTime, null, this);
+        
 
         if (this.abilityCounter < this.time.now) {
             this.player.setGravityY(200);
