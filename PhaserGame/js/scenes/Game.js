@@ -87,23 +87,16 @@ export class Game extends Phaser.Scene{
         this.physics.add.overlap(this.player, this.slowTimeCoin, this.slowTime, null, this);
 
         //create border
-        this.border = this.physics.add.sprite(100, 200, 'border');
+        this.border = this.physics.add.sprite(-30, 200, 'border');
         this.physics.add.collider(this.border, this.platforms);
 
         //out of bounds disable
         this.physics.add.overlap(this.border, this.obstacles , this.OutOfBounds, null, this);
         this.physics.add.overlap(this.border, this.coins , this.OutOfBounds, null, this);
 
-
-        this.timedEvent = this.time.addEvent({ delay: 5000, callback: this.timer, callbackScope: this, loop: false });
-    }
-    timerBool = false;
-    timer (){
-        this.timerBool = true;
     }
 
     update (){
-        if(this.timerBool){
         console.log("Gamespeed: "+this.gameSpeed);
 
         //other key inputs for player 2
@@ -275,7 +268,6 @@ export class Game extends Phaser.Scene{
         this.abilityNumber=Math.floor((this.abilityCounter-this.time.now)/100);
         this.abilityText.setText('power-up time: ' + this.abilityNumber);
         console.log(this.health);
-    }
     }
 
     
