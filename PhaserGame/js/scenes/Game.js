@@ -72,9 +72,9 @@ export class Game extends Phaser.Scene{
         this.dwarfinator = this.physics.add.group({allowGravity: false});
 
         //timer
-        this.timedEvent = this.time.addEvent({ delay: 2500, callback: this.spawn, callbackScope: this, loop: true });
+        /*this.timedEvent = this.time.addEvent({ delay: 2500, callback: this.spawn, callbackScope: this, loop: true });
         this.powerEvent = this.time.addEvent({ delay: 60000, callback: this.power, callbackScope: this, loop: true }); //maybe put lower
-        this.abilityText.visible = false;
+        this.abilityText.visible = false;*/
 
         //player hit-detection
         this.physics.add.overlap(this.player, this.coins, this.collectCoin, null, this);
@@ -87,7 +87,7 @@ export class Game extends Phaser.Scene{
         this.physics.add.overlap(this.player, this.slowTimeCoin, this.slowTime, null, this);
 
         //create border
-        this.border = this.physics.add.sprite(-30, 200, 'border');
+        this.border = this.physics.add.sprite(100, 200, 'border');
         this.physics.add.collider(this.border, this.platforms);
 
         //out of bounds disable
