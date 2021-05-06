@@ -72,9 +72,9 @@ export class Game extends Phaser.Scene{
         this.dwarfinator = this.physics.add.group({allowGravity: false});
 
         //timer
-        /*this.timedEvent = this.time.addEvent({ delay: 2500, callback: this.spawn, callbackScope: this, loop: true });
+        this.timedEvent = this.time.addEvent({ delay: 2500, callback: this.spawn, callbackScope: this, loop: true });
         this.powerEvent = this.time.addEvent({ delay: 60000, callback: this.power, callbackScope: this, loop: true }); //maybe put lower
-        this.abilityText.visible = false;*/
+        this.abilityText.visible = false;
 
         //player hit-detection
         this.physics.add.overlap(this.player, this.coins, this.collectCoin, null, this);
@@ -93,9 +93,17 @@ export class Game extends Phaser.Scene{
         //out of bounds disable
         this.physics.add.overlap(this.border, this.obstacles , this.OutOfBounds, null, this);
         this.physics.add.overlap(this.border, this.coins , this.OutOfBounds, null, this);
+
+
+        this.timedEvent = this.time.addEvent({ delay: 5000, callback: this.timer, callbackScope: this, loop: false });
+    }
+    timerBool = false;
+    timer (){
+        this.timerBool = true;
     }
 
     update (){
+        if(this.timerBool){
         console.log("Gamespeed: "+this.gameSpeed);
 
         //other key inputs for player 2
@@ -267,7 +275,7 @@ export class Game extends Phaser.Scene{
         this.abilityNumber=Math.floor((this.abilityCounter-this.time.now)/100);
         this.abilityText.setText('power-up time: ' + this.abilityNumber);
         console.log(this.health);
-        
+    }
     }
 
     
