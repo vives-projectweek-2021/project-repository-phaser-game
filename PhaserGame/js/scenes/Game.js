@@ -285,6 +285,13 @@ export class Game extends Phaser.Scene{
         this.abilityText.setText('Power-up time: ' + this.abilityNumber);
         this.debuffText.setText('Debuff time: ' + (this.debuffNumber - 100));
         console.log(this.health);
+
+        //gameOver
+        if(this.gameOver && this.popup==true){
+            this.popup=false;
+            //alert("SCORE: "+ this.distance);  //popup with score
+            location.reload();
+        }
     }
 
     
@@ -401,6 +408,8 @@ export class Game extends Phaser.Scene{
     jumpCounter = 0;
 
     health = 1;
+
+    popup=true;
 
 
     abilityText;
