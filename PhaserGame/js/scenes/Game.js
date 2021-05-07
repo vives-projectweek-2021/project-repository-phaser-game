@@ -87,7 +87,7 @@ export class Game extends Phaser.Scene{
         this.physics.add.overlap(this.player, this.slowTimeCoin, this.slowTime, null, this);
 
         //create border
-        this.border = this.physics.add.sprite(500, 200, 'border');
+        this.border = this.physics.add.sprite(-30, 200, 'border');
         this.physics.add.collider(this.border, this.platforms);
 
         //out of bounds disable
