@@ -39,6 +39,7 @@ export class Game extends Phaser.Scene{
         //create text on screen
         this.scoreText = this.add.text(40, 50, 'score: 0', { fontSize: '21px', fill: '#000', backgroundColor: '#737373' });
         this.dropText = this.add.text(200, 50, 'Time: 0', { fontSize: '21px', fill: '#000' });
+        this.debuffText = this.add.text(200, 100, 'debuff timer: 0', { fontSize: '21px', fill: '#000' });
         this.distanceText= this.add.text(800, 50, 'Distance: 0', { fontSize: '21px', fill: '#000' });
         this.abilityText = this.add.text(200, 80, 'gravitycounter: 0', { fontSize: '21px', fill: '#000' });
         this.disableEnemyText= this.add.text(500, 50, 'Player 2 disabled for : 0', { fontSize: '21px', fill: '#000' });
@@ -75,6 +76,7 @@ export class Game extends Phaser.Scene{
         this.timedEvent = this.time.addEvent({ delay: 2500, callback: this.spawn, callbackScope: this, loop: true });
         this.powerEvent = this.time.addEvent({ delay: 20000, callback: this.power, callbackScope: this, loop: true }); //maybe put lower
         this.abilityText.visible = false;
+        this.debuffText.visible = false;
 
         //player hit-detection
         this.physics.add.overlap(this.player, this.coins, this.collectCoin, null, this);
@@ -215,6 +217,10 @@ export class Game extends Phaser.Scene{
                 this.speedActivate = false;
             }
             this.player.setDisplaySize(64,64);
+            this.disablejump = false;
+            this.debuffText.visible = false;
+            
+
 
         }
     
@@ -224,14 +230,16 @@ export class Game extends Phaser.Scene{
                 this.speedActivate = true;
                 this.gameSpeed=12;
                 this.debuffTimer= this.time.now + 20000;
+                this.debuffText.visible = true;
             }
 
         //dwarfinator debuff
-            if(this.keyX.isDown){
-                this.player.setDisplaySize(32,32);   
-                this.debuffTimer = this.time.now + 20000; 
-            }
-
+        if(this.keyX.isDown){
+            this.disablejump = true;
+            this.player.setDisplaySize(32,32);   
+            this.debuffTimer = this.time.now + 20000; 
+            this.debuffText.visible = true;
+        }
         //obstacle jump debuff
             if(this.keyV.isDown){
                 this.obstacles.setVelocityY(-300);
@@ -265,7 +273,6 @@ export class Game extends Phaser.Scene{
 
         if (this.abilityCounter < this.time.now) {
             this.player.setGravityY(200);
-            this.disablejump = false;
             this.enabletripleJump = false;
             this.abilityText.visible = false;
             if (!this.gameOver && this.slowActivate){
@@ -274,7 +281,9 @@ export class Game extends Phaser.Scene{
             }
         }
         this.abilityNumber=Math.floor((this.abilityCounter-this.time.now)/100);
+        this.debuffNumber=Math.floor((this.debuffTimer-this.time.now)/100);
         this.abilityText.setText('power-up time: ' + this.abilityNumber);
+        this.debuffText.setText('Debuff time: ' + (this.debuffNumber - 100));
         console.log(this.health);
     }
 
@@ -348,12 +357,6 @@ export class Game extends Phaser.Scene{
         this.health += 1;
         healthCoin.disableBody(true, true);
     }
-    singleJump(player, singleJumpCoin){
-        this.abilityCounter = this.time.now + 10000;
-        this.disablejump = true;
-        this.abilityText.visible = true;
-        singleJumpCoin.disableBody(true, true);
-    }
     tripleJump(player, tripleJumpCoin){
         this.abilityCounter = this.time.now + 10000;
         this.enabletripleJump = true;
@@ -385,6 +388,7 @@ export class Game extends Phaser.Scene{
     nextDrop=0;
     disableDropTimer=0;
     debuffTimer = 0;
+    debuffText = '';
     speedActivate = false;
     slowActivate= false;
 
