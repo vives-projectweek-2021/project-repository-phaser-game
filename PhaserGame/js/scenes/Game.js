@@ -68,9 +68,7 @@ export class Game extends Phaser.Scene{
         this.slowTimeCoin = this.physics.add.group({allowGravity: false});
         this.physics.add.collider(this.slowTimeCoin, this.platforms);
 
-        //create debuffs
-        this.singleJumpCoin = this.physics.add.group({allowGravity: false});
-        this.dwarfinator = this.physics.add.group({allowGravity: false});
+
 
         //timer
         this.timedEvent = this.time.addEvent({ delay: 2500, callback: this.spawn, callbackScope: this, loop: true });
@@ -84,7 +82,6 @@ export class Game extends Phaser.Scene{
         this.physics.add.overlap(this.player, this.disablePower, this.collectDisable, null, this);
         this.physics.add.overlap(this.player, this.lowGravityCoin, this.lowGravity, null, this);
         this.physics.add.overlap(this.player, this.healthCoin, this.addHealth, null, this);
-        this.physics.add.overlap(this.player, this.singleJumpCoin, this.singleJump, null, this);
         this.physics.add.overlap(this.player, this.tripleJumpCoin, this.tripleJump, null, this);
         this.physics.add.overlap(this.player, this.slowTimeCoin, this.slowTime, null, this);
 
@@ -133,7 +130,6 @@ export class Game extends Phaser.Scene{
         this.disablePower.setVelocityX(this.gameSpeed*-60);
         this.lowGravityCoin.setVelocityX(this.gameSpeed*-60);
         this.healthCoin.setVelocityX(this.gameSpeed*-60);
-        this.singleJumpCoin.setVelocityX(this.gameSpeed*-60);
         this.tripleJumpCoin.setVelocityX(this.gameSpeed*-60);
         this.slowTimeCoin.setVelocityX(this.gameSpeed*-60);
         this.bg.tilePositionX += this.gameSpeed/12;
@@ -304,22 +300,18 @@ export class Game extends Phaser.Scene{
 
     power(){
         if(!this.gameOver){
-            var powerNumber = Phaser.Math.Between(1,6);
+            var powerNumber = Phaser.Math.Between(1,5);
             var powerX = Phaser.Math.Between(1100,1500);
             var powerY = Phaser.Math.Between(300,500);
             if (powerNumber == 1) {
                 this.lowGravityCoin.create(powerX, powerY,'lowgravity')
-            }
-            else if (powerNumber == 2) {
-                this.singleJumpCoin.create(powerX, powerY, 'singlejump')
-            }
-            else if (powerNumber == 3) {
+            }else if (powerNumber == 2) {
                 this.tripleJumpCoin.create(powerX, powerY, 'triplejump')
-            }else if(powerNumber==4){
+            }else if(powerNumber==3){
                 this.slowTimeCoin.create(powerX,powerY,'slowtime');
-            }else if(powerNumber==5){
+            }else if(powerNumber==4){
                 this.disablePower.create(powerX,powerY,'disablePower');
-            }else if(powerNumber==6){
+            }else if(powerNumber==5){
                 this.healthCoin.create(powerX,powerY,'lifepower');
             }
             console.log("power number:  "+powerNumber);
