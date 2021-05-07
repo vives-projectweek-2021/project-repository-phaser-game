@@ -93,12 +93,14 @@ export class Game extends Phaser.Scene{
         //out of bounds disable
         this.physics.add.overlap(this.border, this.obstacles , this.OutOfBounds, null, this);
         this.physics.add.overlap(this.border, this.coins , this.OutOfBounds, null, this);
+        this.physics.add.overlap(this.border, this.disablePower , this.OutOfBounds, null, this);
+        this.physics.add.overlap(this.border, this.lowGravityCoin , this.OutOfBounds, null, this);
+        this.physics.add.overlap(this.border, this.healthCoin , this.OutOfBounds, null, this);
+        this.physics.add.overlap(this.border, this.tripleJumpCoin , this.OutOfBounds, null, this);
+        this.physics.add.overlap(this.border, this.slowTimeCoin , this.OutOfBounds, null, this);
 
-    }
 
-    update (){
-        console.log("Gamespeed: "+this.gameSpeed);
-
+        //KEYS
         //other key inputs for player 2
         // Z, Q, S, D dor player 2 joystick
         //arrow keys for player 1 joystick
@@ -116,6 +118,12 @@ export class Game extends Phaser.Scene{
 
         //create key input: space, shift, arrow keys
         this.cursors = this.input.keyboard.createCursorKeys();
+
+    }
+
+    update (){
+        console.log("Gamespeed: "+this.gameSpeed);
+
 
         //set velocity/movement for treadmill effect
         this.obstacles.setVelocityX(this.gameSpeed*-60);
@@ -287,22 +295,25 @@ export class Game extends Phaser.Scene{
 
     power(){
         if(!this.gameOver){
-            this.powerNumber = Phaser.Math.Between(1,5);
+            var powerNumber = Phaser.Math.Between(1,6);
             var powerX = Phaser.Math.Between(1100,1500);
             var powerY = Phaser.Math.Between(300,500);
-            if (this.powerNumber = 1) {
+            if (powerNumber == 1) {
                 this.lowGravityCoin.create(powerX, powerY,'lowgravity')
             }
-            else if (this.powerNumber = 2) {
+            else if (powerNumber == 2) {
                 this.singleJumpCoin.create(powerX, powerY, 'singlejump')
             }
-            else if (this.powerNumber = 3) {
+            else if (powerNumber == 3) {
                 this.tripleJumpCoin.create(powerX, powerY, 'triplejump')
-            }else if(this.powerNumber=4){
+            }else if(powerNumber==4){
                 this.slowTimeCoin.create(powerX,powerY,'slowtime');
-            }else if(this.powerNumber=5){
+            }else if(powerNumber==5){
                 this.disablePower.create(powerX,powerY,'disablePower');
+            }else if(powerNumber==6){
+                this.healthCoin.create(powerX,powerY,'lifepower');
             }
+            console.log("power number:  "+powerNumber);
         }
     }
 
@@ -395,6 +406,8 @@ export class Game extends Phaser.Scene{
     abilityText;
     abilityCounter = 0;
     abilityNumber = 0;
+
+
 }
 
 

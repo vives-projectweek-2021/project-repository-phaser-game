@@ -9,21 +9,32 @@ export class LoadScene extends Phaser.Scene{
 
     }
     preload(){
+
+        //background
         this.load.image('background','assets/general/space.png');
         this.load.image('ground','assets/game/ground2.png');
-        this.load.image('obstacle','assets/obstacles/obstacle.png');
-        this.load.image('player','assets/game/spaceCharacter.png');
-        this.load.image('coin','assets/powerups/coin.png');
-        this.load.image('start_button','assets/menu/start.png');
-        this.load.image('press_to_start','assets/menu/presstostart.png');
-        this.load.image('enemy','assets/game/UFO.png');
-        this.load.image('disablePower','assets/powerups/disableEnemy.png');
-        this.load.image('lifepower','assets/powerups/lifepower.png');
-        this.load.image('slowtime','assets/powerups/slowtime.png');
-        this.load.image('border','assets/game/border.png');
         this.load.image('craters','assets/general/craters.png');
         this.load.image('planet','assets/general/planet.png');
         this.load.image('spaceground','assets/general/spaceground.png');
+
+        //game
+        this.load.image('obstacle','assets/obstacles/space obstacle.png');
+        this.load.image('player','assets/game/spaceCharacter.png');
+        this.load.image('start_button','assets/menu/start.png');
+        this.load.image('press_to_start','assets/menu/presstostart.png');
+        this.load.image('enemy','assets/game/UFO.png');
+        this.load.image('border','assets/game/border.png');
+        this.load.image('coin','assets/powerups/coin.png');
+
+
+        //powerups
+        this.load.image('disablePower','assets/powerups/disableEnemy.png');
+        this.load.image('triplejump','assets/powerups/jumppower.png');
+        this.load.image('lifepower','assets/powerups/lifepower.png');
+        this.load.image('slowtime','assets/powerups/slowtime.png');
+        this.load.image('lowgravity','assets/powerups/lowgravity.png');
+        
+    
 
 
         //create LoadingBar
