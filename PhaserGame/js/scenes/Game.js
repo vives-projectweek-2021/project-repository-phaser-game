@@ -37,12 +37,12 @@ export class Game extends Phaser.Scene{
         this.physics.add.collider(this.coins, this.platforms);
         
         //create text on screen
-        this.scoreText = this.add.text(40, 50, 'score: 0', { fontSize: '21px', fill: '#000', backgroundColor: '#737373' });
-        this.dropText = this.add.text(200, 50, 'Time: 0', { fontSize: '21px', fill: '#000' });
-        this.debuffText = this.add.text(200, 100, 'debuff timer: 0', { fontSize: '21px', fill: '#000' });
-        this.distanceText= this.add.text(800, 50, 'Distance: 0', { fontSize: '21px', fill: '#000' });
-        this.abilityText = this.add.text(200, 80, 'gravitycounter: 0', { fontSize: '21px', fill: '#000' });
-        this.disableEnemyText= this.add.text(500, 50, 'Player 2 disabled for : 0', { fontSize: '21px', fill: '#000' });
+        this.scoreText = this.add.text(100, 20, 'Score: 0', { fontSize: '21px', fill: '#000', backgroundColor: '#76C4E5', fontStyle:'Bold' });
+        this.dropText = this.add.text(400, 20, 'Time: 0', { fontSize: '21px', fill: '#000', backgroundColor: '#76C4E5', fontStyle:'Bold' });
+        this.distanceText= this.add.text(700, 20, 'Distance: 0', { fontSize: '21px', fill: '#000', backgroundColor: '#76C4E5', fontStyle:'Bold' });
+        this.debuffText = this.add.text(700, 60, 'debuff timer: 0', { fontSize: '21px', fill: '#000', backgroundColor: '#76C4E5', fontStyle:'Bold' });
+        this.abilityText = this.add.text(400, 60, 'gravitycounter: 0', { fontSize: '21px', fill: '#000', backgroundColor: '#76C4E5', fontStyle:'Bold' });
+        this.disableEnemyText= this.add.text(100, 60, 'Player 2 disabled for : 0',{ fontSize: '21px', fill: '#000', backgroundColor: '#76C4E5', fontStyle:'Bold' });
 
 
         //background if not loading image = blue
@@ -75,6 +75,7 @@ export class Game extends Phaser.Scene{
         this.powerEvent = this.time.addEvent({ delay: 20000, callback: this.power, callbackScope: this, loop: true }); //maybe put lower
         this.abilityText.visible = false;
         this.debuffText.visible = false;
+        this.disableEnemyText.visible = false;
 
         //player hit-detection
         this.physics.add.overlap(this.player, this.coins, this.collectCoin, null, this);
@@ -203,6 +204,7 @@ export class Game extends Phaser.Scene{
         if (this.cursors.down.isDown && this.nextDrop<this.time.now && this.disableEnemyTimer<this.time.now){
             this.obstacles.create(this.enemy.x, this.enemy.y, 'obstacle');
             this.nextDrop = this.time.now + 3000;
+            this.text
         }
 
         //enemy debuffs
@@ -256,6 +258,8 @@ export class Game extends Phaser.Scene{
         this.disableEnemyCounter=Math.floor((this.disableEnemyTimer-this.time.now)/100);
         if(this.disableEnemyCounter<0){
             this.disableEnemyCounter=0;
+            this.disableEnemyText.visible=false;
+
         }
         this.disableEnemyText.setText('Disable Timer: ' + this.disableEnemyCounter);
 
@@ -337,6 +341,7 @@ export class Game extends Phaser.Scene{
     collectDisable(player,disablePower){
         this.disableEnemyTimer= this.time.now + 10000;
         disablePower.disableBody(true, true);
+        this.disableEnemyText.visible=true;
     }
 
     lowGravity(player, lowGravityCoin){
