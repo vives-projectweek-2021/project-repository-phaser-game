@@ -73,7 +73,7 @@ export class Game extends Phaser.Scene{
 
         //timer
         this.timedEvent = this.time.addEvent({ delay: 2500, callback: this.spawn, callbackScope: this, loop: true });
-        this.powerEvent = this.time.addEvent({ delay: 60000, callback: this.power, callbackScope: this, loop: true }); //maybe put lower
+        this.powerEvent = this.time.addEvent({ delay: 20000, callback: this.power, callbackScope: this, loop: true }); //maybe put lower
         this.abilityText.visible = false;
 
         //player hit-detection
@@ -209,7 +209,7 @@ export class Game extends Phaser.Scene{
 
         //enemy debuffs
 
-        if(this.debuffTimer< this.time.now+15000 && !this.gameOver){
+        if(this.debuffTimer< this.time.now+10000 && !this.gameOver){
             if(this.speedActivate){
                 this.gameSpeed=6;
                 this.speedActivate = false;
@@ -223,19 +223,19 @@ export class Game extends Phaser.Scene{
             if(this.keyW.isDown){
                 this.speedActivate = true;
                 this.gameSpeed=12;
-                this.debuffTimer= this.time.now + 30000;
+                this.debuffTimer= this.time.now + 20000;
             }
 
         //dwarfinator debuff
             if(this.keyX.isDown){
                 this.player.setDisplaySize(32,32);   
-                this.debuffTimer = this.time.now + 30000; 
+                this.debuffTimer = this.time.now + 20000; 
             }
 
         //obstacle jump debuff
             if(this.keyV.isDown){
                 this.obstacles.setVelocityY(-300);
-                this.debuffTimer= this.time.now + 30000;
+                this.debuffTimer= this.time.now + 20000;
             }
 
         }
@@ -339,7 +339,7 @@ export class Game extends Phaser.Scene{
     }
 
     lowGravity(player, lowGravityCoin){
-        this.abilityCounter = this.time.now + 3000;
+        this.abilityCounter = this.time.now + 10000;
         this.player.setGravityY(-25);
         this.abilityText.visible = true;
         lowGravityCoin.disableBody(true, true);
@@ -349,13 +349,13 @@ export class Game extends Phaser.Scene{
         healthCoin.disableBody(true, true);
     }
     singleJump(player, singleJumpCoin){
-        this.abilityCounter = this.time.now + 3000;
+        this.abilityCounter = this.time.now + 10000;
         this.disablejump = true;
         this.abilityText.visible = true;
         singleJumpCoin.disableBody(true, true);
     }
     tripleJump(player, tripleJumpCoin){
-        this.abilityCounter = this.time.now + 20000;
+        this.abilityCounter = this.time.now + 10000;
         this.enabletripleJump = true;
         this.abilityText.visible = true;
         tripleJumpCoin.disableBody(true, true);
@@ -363,7 +363,7 @@ export class Game extends Phaser.Scene{
     slowTime(player, slowTimeCoin){
         this.abilityText.visible = true;
         this.slowActivate = true;
-        this.abilityCounter = this.time.now + 5000;
+        this.abilityCounter = this.time.now + 10000;
         this.gameSpeed = 3;
         slowTimeCoin.disableBody(true,true);
     }
