@@ -37,7 +37,7 @@ export class Game extends Phaser.Scene{
         this.physics.add.collider(this.coins, this.platforms);
         
         //create text on screen
-        this.scoreText = this.add.text(40, 50, 'score: 0', { fontSize: '21px', fill: '#000' });
+        this.scoreText = this.add.text(40, 50, 'score: 0', { fontSize: '21px', fill: '#000', backgroundColor: '#737373' });
         this.dropText = this.add.text(200, 50, 'Time: 0', { fontSize: '21px', fill: '#000' });
         this.distanceText= this.add.text(800, 50, 'Distance: 0', { fontSize: '21px', fill: '#000' });
         this.abilityText = this.add.text(200, 80, 'gravitycounter: 0', { fontSize: '21px', fill: '#000' });
