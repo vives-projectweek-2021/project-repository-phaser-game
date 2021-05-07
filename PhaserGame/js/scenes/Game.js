@@ -87,7 +87,7 @@ export class Game extends Phaser.Scene{
         this.physics.add.overlap(this.player, this.slowTimeCoin, this.slowTime, null, this);
 
         //create border
-        this.border = this.physics.add.sprite(-30, 200, 'border');
+        this.border = this.physics.add.sprite(60, 200, 'border');
         this.physics.add.collider(this.border, this.platforms);
 
         //out of bounds disable
@@ -284,7 +284,7 @@ export class Game extends Phaser.Scene{
         this.debuffNumber=Math.floor((this.debuffTimer-this.time.now)/100);
         this.abilityText.setText('Power-up time: ' + this.abilityNumber);
         this.debuffText.setText('Debuff time: ' + (this.debuffNumber - 100));
-        console.log(this.health);
+        console.log("Health : "+this.health);
 
         //gameOver
         if(this.gameOver && this.popup==true){
