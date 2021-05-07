@@ -15,6 +15,8 @@ let game = new Phaser.Game({
         pixelart: true
     },
     type: Phaser.AUTO,
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
     physics: {
         default: 'arcade',
         arcade: {

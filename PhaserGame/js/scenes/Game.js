@@ -40,8 +40,8 @@ export class Game extends Phaser.Scene{
         this.scoreText = this.add.text(100, 20, 'Score: 0', { fontSize: '21px', fill: '#000', backgroundColor: '#76C4E5', fontStyle:'Bold' });
         this.dropText = this.add.text(400, 20, 'Time: 0', { fontSize: '21px', fill: '#000', backgroundColor: '#76C4E5', fontStyle:'Bold' });
         this.distanceText= this.add.text(700, 20, 'Distance: 0', { fontSize: '21px', fill: '#000', backgroundColor: '#76C4E5', fontStyle:'Bold' });
-        this.debuffText = this.add.text(700, 60, 'debuff timer: 0', { fontSize: '21px', fill: '#000', backgroundColor: '#76C4E5', fontStyle:'Bold' });
-        this.abilityText = this.add.text(400, 60, 'gravitycounter: 0', { fontSize: '21px', fill: '#000', backgroundColor: '#76C4E5', fontStyle:'Bold' });
+        this.debuffText = this.add.text(700, 60, 'Debuff timer: 0', { fontSize: '21px', fill: '#000', backgroundColor: '#76C4E5', fontStyle:'Bold' });
+        this.abilityText = this.add.text(400, 60, 'Gravitycounter: 0', { fontSize: '21px', fill: '#000', backgroundColor: '#76C4E5', fontStyle:'Bold' });
         this.disableEnemyText= this.add.text(100, 60, 'Player 2 disabled for : 0',{ fontSize: '21px', fill: '#000', backgroundColor: '#76C4E5', fontStyle:'Bold' });
 
 
@@ -282,7 +282,7 @@ export class Game extends Phaser.Scene{
         }
         this.abilityNumber=Math.floor((this.abilityCounter-this.time.now)/100);
         this.debuffNumber=Math.floor((this.debuffTimer-this.time.now)/100);
-        this.abilityText.setText('power-up time: ' + this.abilityNumber);
+        this.abilityText.setText('Power-up time: ' + this.abilityNumber);
         this.debuffText.setText('Debuff time: ' + (this.debuffNumber - 100));
         console.log(this.health);
     }
@@ -318,7 +318,6 @@ export class Game extends Phaser.Scene{
             }else if(powerNumber==5){
                 this.healthCoin.create(powerX,powerY,'lifepower');
             }
-            console.log("power number:  "+powerNumber);
         }
     }
 
