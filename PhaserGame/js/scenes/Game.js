@@ -186,9 +186,9 @@ export class Game extends Phaser.Scene{
 
         //player 1 left right
         if(this.keyD.isDown){
-            this.player.setVelocityX(300);
+            this.player.setVelocityX(400);
         }else if(this.keyQ.isDown){
-            this.player.setVelocityX(-300);
+            this.player.setVelocityX(-400);
         }
         else{
             this.player.setVelocityX(0);
