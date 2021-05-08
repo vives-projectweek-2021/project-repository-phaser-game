@@ -73,6 +73,7 @@ export class Game extends Phaser.Scene{
         //timer
         this.timedEvent = this.time.addEvent({ delay: 2500, callback: this.spawn, callbackScope: this, loop: true });
         this.powerEvent = this.time.addEvent({ delay: 20000, callback: this.power, callbackScope: this, loop: true }); //maybe put lower
+        this.powerEvent = this.time.addEvent({ delay: 2000, callback: this.startDelay, callbackScope: this, loop: false }); //maybe put lower
         this.abilityText.visible = false;
         this.debuffText.visible = false;
         this.disableEnemyText.visible = false;
@@ -111,31 +112,34 @@ export class Game extends Phaser.Scene{
         this.keyW = this.input.keyboard.addKey('W');  // Get key object W (speedup debuff)
         this.keyX = this.input.keyboard.addKey('X');  // Get key object X (dwarfinator debuff)
         this.keyV = this.input.keyboard.addKey('V'); // Get key object V  (obstacles jump debuff)
-        this.keyA= this.input.keyboard.addKey('A');  // Get key object A  (nothing yet)
-        this.keyF = this.input.keyboard.addKey('F'); // Get key object F  (nothing yet)
-        this.keyB = this.input.keyboard.addKey('B'); // Get key object B  (nothing yet)
         
 
         //create key input: space, shift, arrow keys
         this.cursors = this.input.keyboard.createCursorKeys();
 
     }
+    startDelayBool = false;
+    startDelay(){
+        this.startDelayBool = true;
+    }
 
     update (){
-        console.log("Gamespeed: "+this.gameSpeed);
+        if(this.startDelayBool){
+            console.log("Gamespeed: "+this.gameSpeed);
 
 
-        //set velocity/movement for treadmill effect
-        this.obstacles.setVelocityX(this.gameSpeed*-60);
-        this.coins.setVelocityX(this.gameSpeed*-60);
-        this.disablePower.setVelocityX(this.gameSpeed*-60);
-        this.lowGravityCoin.setVelocityX(this.gameSpeed*-60);
-        this.healthCoin.setVelocityX(this.gameSpeed*-60);
-        this.tripleJumpCoin.setVelocityX(this.gameSpeed*-60);
-        this.slowTimeCoin.setVelocityX(this.gameSpeed*-60);
-        this.bg.tilePositionX += this.gameSpeed/12;
-        this.craters.tilePositionX += this.gameSpeed/6;
-        this.spaceground.tilePositionX+=this.gameSpeed;
+            //set velocity/movement for treadmill effect
+            this.obstacles.setVelocityX(this.gameSpeed*-60);
+            this.coins.setVelocityX(this.gameSpeed*-60);
+            this.disablePower.setVelocityX(this.gameSpeed*-60);
+            this.lowGravityCoin.setVelocityX(this.gameSpeed*-60);
+            this.healthCoin.setVelocityX(this.gameSpeed*-60);
+            this.tripleJumpCoin.setVelocityX(this.gameSpeed*-60);
+            this.slowTimeCoin.setVelocityX(this.gameSpeed*-60);
+            this.bg.tilePositionX += this.gameSpeed/12;
+            this.craters.tilePositionX += this.gameSpeed/6;
+            this.spaceground.tilePositionX+=this.gameSpeed;
+        }
 
 
 
@@ -177,7 +181,7 @@ export class Game extends Phaser.Scene{
 
         //player faster down
         if(this.keyS.isDown){
-            this.player.setVelocityY(300);
+            this.player.setVelocityY(400);
         }
 
         //player 1 left right

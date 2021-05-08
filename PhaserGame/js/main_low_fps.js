@@ -22,7 +22,7 @@ let game = new Phaser.Game({
         arcade: {
             gravity: { y: 300 },
             debug: false,
-            fps: 30
+            fps: 20
         }
     },
 })
