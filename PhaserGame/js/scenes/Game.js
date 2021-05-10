@@ -215,7 +215,7 @@ export class Game extends Phaser.Scene{
 
         if(this.debuffTimer< this.time.now+10000 && !this.gameOver){
             if(this.speedActivate){
-                this.gameSpeed=6;
+                this.gameSpeed=4;
                 this.speedActivate = false;
             }
             this.player.setDisplaySize(64,64);
@@ -230,7 +230,7 @@ export class Game extends Phaser.Scene{
         if(this.debuffTimer<this.time.now){
             if(this.keyW.isDown){
                 this.speedActivate = true;
-                this.gameSpeed=12;
+                this.gameSpeed=8;
                 this.debuffTimer= this.time.now + 20000;
                 this.debuffText.visible = true;
             }
@@ -280,7 +280,7 @@ export class Game extends Phaser.Scene{
             this.enabletripleJump = false;
             this.abilityText.visible = false;
             if (!this.gameOver && this.slowActivate){
-                this.gameSpeed = 6;
+                this.gameSpeed = 4;
                 this.slowActivate = false;
             }
         }
