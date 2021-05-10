@@ -11,7 +11,7 @@ export class MenuScene extends Phaser.Scene{
     create(){
         this.background = this.add.tileSprite(500,300,1000,600, 'background');
 
-        this.add.image(this.game.renderer.width / 2 , this.game.renderer.height -100,  "press_to_start");
+        this.add.image(this.game.renderer.width / 2 , this.game.renderer.height -200,  "press_to_start");
         let StartButton = this.add.image(this.game.renderer.width / 2 , this.game.renderer.height / 2 - 20,  "start_button");
 
         StartButton.setInteractive();
