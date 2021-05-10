@@ -2,7 +2,6 @@
 int inputs[] = {2, 3, 4, 5, 6, 7, 8, 9};
 void setup() {
   KeyboardAzertyFr.begin();
-  Serial.begin(9600);
   for(int i = 0; i<9; i++){
     pinMode(inputs[i], INPUT_PULLUP);
   }
@@ -13,7 +12,7 @@ void loop() {
   Serial.println(val);          // debug value
   if(val < 50){
     KeyboardAzertyFr.press(KEY_LEFT_SHIFT);
-      delay(50);
+      delay(150);
     KeyboardAzertyFr.releaseAll();
   }
   for(int i = 0; i<9; i++){
@@ -48,16 +47,16 @@ void launchButton(int button, bool pressRelease){
         KeyboardAzertyFr.press('z');
         break;
       case 9:    // left BUTTONS
-       // KeyboardAzertyFr.press(KEY_LEFT_ARROW);
+        KeyboardAzertyFr.press(KEY_F5);
         break;
       case 6:    // up BUTTONS
-       // KeyboardAzertyFr.press(KEY_UP_ARROW);
+        KeyboardAzertyFr.press('z');
         break;
       case 8:    // right BUTTONS
-        //KeyboardAzertyFr.press(KEY_RIGHT_ARROW);
+        KeyboardAzertyFr.press(KEY_LEFT_SHIFT);
         break;
       case 7:    // down BUTTONS
-        KeyboardAzertyFr.press(KEY_LEFT_SHIFT);
+        KeyboardAzertyFr.press('s');
       break;
     }
   }
@@ -76,16 +75,16 @@ void launchButton(int button, bool pressRelease){
         KeyboardAzertyFr.release('z');
         break;
       case 9:    // left BUTTONS
-        //KeyboardAzertyFr.release(KEY_LEFT_ARROW);
+        KeyboardAzertyFr.release(KEY_F5);
         break;
       case 6:    // up BUTTONS
-       // KeyboardAzertyFr.release(KEY_UP_ARROW);
+        KeyboardAzertyFr.release('z');
         break;
       case 8:    // right BUTTONS
-        //KeyboardAzertyFr.release(KEY_RIGHT_ARROW);
+        KeyboardAzertyFr.release(KEY_LEFT_SHIFT);
         break;
        case 7:    // down BUTTONS
-        KeyboardAzertyFr.release(KEY_LEFT_SHIFT);
+        KeyboardAzertyFr.release('s');
         break;
     }
   }

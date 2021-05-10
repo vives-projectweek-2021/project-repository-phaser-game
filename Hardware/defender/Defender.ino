@@ -98,7 +98,7 @@ void launchButton(int button, int operation){
         KeyboardAzertyFr.press('w');
         break;
        case 9:    // down BUTTONS
-        KeyboardAzertyFr.press('s');
+        KeyboardAzertyFr.press(KEY_DOWN_ARROW);
         break;
       case 10:    // kill switch
         KeyboardAzertyFr.press(KEY_F5);
@@ -110,7 +110,7 @@ void launchButton(int button, int operation){
   else if (operation == 2){//release
     switch (button) {
       case 2:    // left JOYSTICK
-        KeyboardAzertyFr.release(KEY_ARROW_LEFT);
+        KeyboardAzertyFr.release(KEY_LEFT_ARROW);
         break;
       case 3:    // down JOYSTICK
         //KeyboardAzertyFr.release('s');
@@ -131,7 +131,7 @@ void launchButton(int button, int operation){
         KeyboardAzertyFr.release('w');
         break;
        case 9:    // down BUTTONS
-        KeyboardAzertyFr.release('s');
+        KeyboardAzertyFr.release(KEY_DOWN_ARROW);
         break;
     }
   }
