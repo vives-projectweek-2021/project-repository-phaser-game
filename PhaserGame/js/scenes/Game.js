@@ -9,7 +9,7 @@ export class Game extends Phaser.Scene{
         console.log(data);
     }
     create(){
-        this.gameSpeed=6;
+        this.gameSpeed=4;
         //create platforms in group
         this.platforms=this.physics.add.staticGroup();
         this.platforms.create(400,560,'ground').setScale(5,1).refreshBody();
@@ -186,9 +186,9 @@ export class Game extends Phaser.Scene{
 
         //player 1 left right
         if(this.keyD.isDown){
-            this.player.setVelocityX(400);
+            this.player.setVelocityX(300);
         }else if(this.keyQ.isDown){
-            this.player.setVelocityX(-400);
+            this.player.setVelocityX(-300);
         }
         else{
             this.player.setVelocityX(0);
