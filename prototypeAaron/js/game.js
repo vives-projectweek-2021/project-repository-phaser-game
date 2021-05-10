@@ -1,6 +1,8 @@
 var config = {
     type: Phaser.AUTO,
-    width: 1500,        //1000 real, 1500 testing
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    width: 1000,        //1000 real, 1500 testing
     height: 600,
     physics: {
         default: 'arcade',
@@ -39,7 +41,10 @@ function create ()
     
     
     
+    
 
+
+    
     //create platforms in group
     platforms=this.physics.add.staticGroup();
     platforms.create(400,560,'ground').setScale(7,1).refreshBody();
@@ -86,7 +91,7 @@ function create ()
 
 
     //this.cameras.main.startFollow(player);
-    this.cameras.main.backgroundColor = Phaser.Display.Color.HexStringToColor('#1cd4f0');
+    this.cameras.main.backgroundColor = Phaser.Display.Color.HexStringToColor('#76C4E5');
 
     //enemy
     enemy= this.physics.add.sprite(150,150,'enemy');
