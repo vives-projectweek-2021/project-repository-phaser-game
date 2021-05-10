@@ -2,7 +2,7 @@
 
 ## About
 
-[Game-URL](https://game.phaser.ml)
+[Game-URL](https://phaser.ml)
 
 Our idea is to make an infinite runner game. Where the objective is to get the character as far as possible while avoiding obstacles (and collect coins). But with a twist, this endless runner can be played with a friend, they can try to stop you by droping obstacles and activating debuffs.
 
@@ -57,9 +57,9 @@ Some endless runners are very well-known for their addictiveness, like Subway Su
 - Clouds
 - Firedude, volcanos
 
-### Visual
+## Visual
 
-#### Start menu
+### Start menu
 
 - Play
 - Difficulty
@@ -67,7 +67,7 @@ Some endless runners are very well-known for their addictiveness, like Subway Su
 - Donate
 - About
 
-#### About
+### About
 
 #### Game menu
 
@@ -120,10 +120,6 @@ This also makes it possible to host a sql server and to create a player database
 - Hardware: pc
 - Software: Visual Studio Code (code editor)
 - Language: JavaScript using Phaser (Framework)
-
-### Extra
-
-Php mysql database that stores playerdata
 
 ## Links/ bibliography
 
