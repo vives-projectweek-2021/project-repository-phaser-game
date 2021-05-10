@@ -218,9 +218,14 @@ export class Game extends Phaser.Scene{
                 this.gameSpeed=4;
                 this.speedActivate = false;
             }
-            this.player.setDisplaySize(64,64);
+            if(this.drarfinatorActive){
+                this.player.setDisplaySize(64,64);
+                this.player.y-=50;
+                this.drarfinatorActive=false;
+            }
             this.disablejump = false;
             this.debuffText.visible = false;
+            
             
 
 
@@ -241,6 +246,7 @@ export class Game extends Phaser.Scene{
             this.player.setDisplaySize(32,32);   
             this.debuffTimer = this.time.now + 20000; 
             this.debuffText.visible = true;
+            this.drarfinatorActive=true;
         }
         //obstacle jump debuff
             if(this.keyV.isDown){
@@ -420,7 +426,7 @@ export class Game extends Phaser.Scene{
     abilityCounter = 0;
     abilityNumber = 0;
 
-
+    drarfinatorActive=false;
 }
 
 
