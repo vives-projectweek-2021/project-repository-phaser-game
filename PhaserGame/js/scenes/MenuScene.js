@@ -25,6 +25,12 @@ export class MenuScene extends Phaser.Scene{
         StartButton.on("pointerdown", ()=>{
             this.scene.start(CST.SCENES.GAME, "Hello From Menu Screen!");
         })
+
+        //background audio
+        let sound = this.sound.add('soundtrack');
+        
+        sound.stop();
+        sound.play();
     }
     update (){
         this.background.tilePositionX += 0.2;  

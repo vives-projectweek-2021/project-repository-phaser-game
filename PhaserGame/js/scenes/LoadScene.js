@@ -33,6 +33,8 @@ export class LoadScene extends Phaser.Scene{
         this.load.image('lifepower','assets/powerups/lifepower.png');
         this.load.image('slowtime','assets/powerups/slowtime.png');
         this.load.image('lowgravity','assets/powerups/lowgravity.png');
+
+        this.load.audio("soundtrack", ["assets/general/soundtrack.mp3"]);
         
     
 

@@ -113,6 +113,7 @@ export class Game extends Phaser.Scene{
         this.keyX = this.input.keyboard.addKey('X');  // Get key object X (dwarfinator debuff)
         this.keyV = this.input.keyboard.addKey('V'); // Get key object V  (obstacles jump debuff)
         
+        
 
         //create key input: space, shift, arrow keys
         this.cursors = this.input.keyboard.createCursorKeys();
