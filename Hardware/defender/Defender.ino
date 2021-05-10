@@ -77,28 +77,28 @@ void launchButton(int button, int operation){
   if(operation == 1){//press
     switch (button) {
       case 2:    // left JOYSTICK
-        KeyboardAzertyFr.press('q');
-        break;
-      case 3:    // down JOYSTICK
-        KeyboardAzertyFr.press('s');
-        break;
-      case 4:    // right JOYSTICK
-        KeyboardAzertyFr.press('d');
-        break;
-      case 5:    // up JOYSTICK
-        KeyboardAzertyFr.press('z');
-        break;
-      case 6:    // left BUTTONS
         KeyboardAzertyFr.press(KEY_LEFT_ARROW);
         break;
-      case 7:    // up BUTTONS
-        KeyboardAzertyFr.press(KEY_UP_ARROW);
+      case 3:    // down JOYSTICK
+        //KeyboardAzertyFr.press('s');
         break;
-      case 8:    // right BUTTONS
+      case 4:    // right JOYSTICK
         KeyboardAzertyFr.press(KEY_RIGHT_ARROW);
         break;
+      case 5:    // up JOYSTICK
+        KeyboardAzertyFr.press(KEY_UP_ARROW);
+        break;
+      case 6:    // left BUTTONS
+        KeyboardAzertyFr.press('x');
+        break;
+      case 7:    // up BUTTONS
+        KeyboardAzertyFr.press('v');
+        break;
+      case 8:    // right BUTTONS
+        KeyboardAzertyFr.press('w');
+        break;
        case 9:    // down BUTTONS
-        KeyboardAzertyFr.press(KEY_DOWN_ARROW);
+        KeyboardAzertyFr.press('s');
         break;
       case 10:    // kill switch
         KeyboardAzertyFr.press(KEY_F5);
@@ -110,28 +110,28 @@ void launchButton(int button, int operation){
   else if (operation == 2){//release
     switch (button) {
       case 2:    // left JOYSTICK
-        KeyboardAzertyFr.release('q');
+        KeyboardAzertyFr.release(KEY_ARROW_LEFT);
         break;
       case 3:    // down JOYSTICK
-        KeyboardAzertyFr.release('s');
+        //KeyboardAzertyFr.release('s');
         break;
       case 4:    // right JOYSTICK
-        KeyboardAzertyFr.release('d');
-        break;
-      case 5:    // up JOYSTICK
-        KeyboardAzertyFr.release('z');
-        break;
-      case 6:    // left BUTTONS
-        KeyboardAzertyFr.release(KEY_LEFT_ARROW);
-        break;
-      case 7:    // up BUTTONS
-        KeyboardAzertyFr.release(KEY_UP_ARROW);
-        break;
-      case 8:    // right BUTTONS
         KeyboardAzertyFr.release(KEY_RIGHT_ARROW);
         break;
+      case 5:    // up JOYSTICK
+        KeyboardAzertyFr.release(KEY_UP_ARROW);
+        break;
+      case 6:    // left BUTTONS
+        KeyboardAzertyFr.release('x');
+        break;
+      case 7:    // up BUTTONS
+        KeyboardAzertyFr.release('v');
+        break;
+      case 8:    // right BUTTONS
+        KeyboardAzertyFr.release('w');
+        break;
        case 9:    // down BUTTONS
-        KeyboardAzertyFr.release(KEY_DOWN_ARROW);
+        KeyboardAzertyFr.release('s');
         break;
     }
   }
