@@ -1,9 +1,10 @@
 # Phaser Game
 
+![Phaser](Thumbnail.png)
+
 ## About
 
 [Game-URL](https://phaser.ml)
-[Phaser](Thumbnail.png)
 
 Our idea is to make an infinite runner game. Where the objective is to get the character as far as possible while avoiding obstacles (and collect coins). But with a twist, this endless runner can be played with a friend, they can try to stop you by droping obstacles and activating debuffs.
 
