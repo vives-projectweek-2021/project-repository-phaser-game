@@ -67,7 +67,6 @@ Some endless runners are very well-known for their addictiveness, like Subway Su
 - Donate
 - About
 
-### About
 
 #### Game menu
 
