@@ -54,7 +54,6 @@ Some endless runners are very well-known for their addictiveness, like Subway Su
 - Dwarfinator (smaller character) + Single jump
 - Make obstacles jump
 
-
 ### Theme (graphics)
 
 - Space including a planet, aliens, a UFO, boxes & craters
@@ -76,7 +75,6 @@ Some endless runners are very well-known for their addictiveness, like Subway Su
 - Debuff timer
 - Drop obstacle timer
 
-
 ## Hosting
 
 Phaser can be hosted from netlify, Because the webpage is static.
@@ -93,7 +91,7 @@ You can also just git clone this repo and localhost the game.
  |phaser basic game setup                                                               |Aaron      |
  |find a good no copyrighted background track                                           |           |
  |install background audio                                                              |Arno       |
- |player 1 movement                                                                     |           |
+ |player 1 jump & gravity                                                               |Aaron      |
  |player 2 movement                                                                     |Aaron      |
  |player 1 left right                                                                   |Arno       |
  |visuals (sprites, background, buffs, obstacles, ...)                                  |Aaron      |
