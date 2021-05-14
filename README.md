@@ -1,10 +1,13 @@
 # Phaser Game
 
-![Phaser](Thumbnail.png)
+![Phaser](img/Thumbnail.png)
 
 ## About
 
-[Game-URL](https://phaser.ml)
+- [Game-URL](https://phaser.ml)
+- [Final video](https://www.youtube.com/watch?v=s3fNe2pG_wg)
+- [First concept (the concept before beginning in phaser)](concept.md)
+- [Hardware (extra info)](./Hardware)
 
 Our idea is to make an infinite runner game. Where the objective is to get the character as far as possible while avoiding obstacles (and collect coins). But with a twist, this endless runner can be played with a friend, they can try to stop you by droping obstacles and activating debuffs.
 
@@ -18,14 +21,13 @@ Some endless runners are very well-known for their addictiveness, like Subway Su
 - [Aaron Van Vyve](https://github.com/vives-projectweek-2021/projectweek21-report-AaronVanV)
 - [Henry Buysschaert](https://github.com/vives-projectweek-2021/projectweek21-report-HenryBuyssie)
 
-## Game Ideas
+## Game facts
 
 ### Physics
 
-- Flat plain with holes and obstacles
-- Moving ground (height)
-- Multiple paths for the player to choose
+- Flat plain with obstacles
 - Changeable gravity
+- player 1 can jump, move left and right
 - Double jump
 - Player 2 that can drop obstacles
 
@@ -39,88 +41,112 @@ Some endless runners are very well-known for their addictiveness, like Subway Su
 - Triple jump
 - Extra life
 - Coins (extra points)
+<!--  add buffs -->
 
 #### Debuffs
 
 - Slowness
 - Dwarfinator (smaller character)
 - Single jump
+<!--  add debuffs -->
 
-### Themes (graphics)
+### Theme (graphics)
 
-- Middle ages
-- Construction site
-- Dog competition
 - Alien, space
-- Skater/thief, city
-- Viking, Viking city
-- Rat, sewers
-- Ocean
-- Clouds
-- Firedude, volcanos
 
 ## Visual
 
 ### Start menu
 
 - Play
-- Difficulty
-- Exit
-- Donate
-- About
+- The player needs to insert a coin to start
 
-
-#### Game menu
+#### Game header
 
 - Current score
 - Timer
-- Settings   <!--  the list under setting needs to be intented (extra tab) -->
-  - Sound FX
-  - Background music
-  - Exit
+<!--  add all the timers and game things -->
 
 ## Hosting
 
 Phaser can be hosted from netlify, Because the webpage is static.
 
-But we will host the project from a Windows server. This is because This is difficult to work together on the same document at the same time. And with this solution, we can work on a smb share. So every change is directly connected to each other. This way everyone can see all the changes in real time.
-
-This also makes it possible to host a sql server and to create a player database for example (This is an extra if we have some spare time).
+The only downside is that it takes a loung time to load the phaser framework. witch is 6Mb.
+The game will also be hosted local on a raspberry pi. The pi will be installed with kiosk mode. The player can play on the pi with the controllers and a screen.
 
 ## Tasks
 
-### Learning
+ |Tasks (game)                                                                          |Done by:   |
+ |:-------------------------------------------------------------------------------------|:----------|
+ |phaser basic game setup                                                               |           |
+ |find a good no copyrighted background track                                           |           |
+ |install background audio                                                              |Arno       |
+ |player 1 movement                                                                     |           |
+ |player 2 movement                                                                     |           |
+ |player 1 left right                                                                   |Arno       |
+ |visuals (sprites, background, buffs, obstacles, ...)                                  |           |
+ |convert main.js to multiple scenes                                                    |Arno       |
+ |create loading assets and menu scenes                                                 |Arno       |
+ |add 2 seconds delayed start for performance                                           |Arno       |
+ |publish to netlify and craete lifetime free domainname                                |Arno       |
+ |add pi.html with a second main£.js with limited frame rate for the pi                 |Arno       |
+ |edit final video in premiere pro                                                      |           |
+ |                                                                                      |           |
+ |                                                                                      |           |
+ |                                                                                      |           |
+ |                                                                                      |           |
+ |                                                                                      |           |
+ |                                                                                      |           |
+ |                                                                                      |           |
+ |                                                                                      |           |
+ |                                                                                      |           |
+ |                                                                                      |           |
+ |                                                                                      |           |
 
-- Phaser
-- JavaScript
-- Graphic Design
-- Game Design
+ |Tasks (buffs)                                                                         |Done by:   |
+ |:-------------------------------------------------------------------------------------|:----------|
+ |buff 1                                                                                |           |
+ |buff 2                                                                                |           |
+ |...                                                                                   |           |
+ |                                                                                      |           |
+ |                                                                                      |           |
+ |                                                                                      |           |
+ |                                                                                      |           |
+ |                                                                                      |           |
 
-### Visuals/graphics
+ |Tasks (debuffs)                                                                       |Done by:   |
+ |:-------------------------------------------------------------------------------------|:----------|
+ |debuff 1                                                                              |           |
+ |debuff 2                                                                              |           |
+ |...                                                                                   |           |
+ |                                                                                      |           |
+ |                                                                                      |           |
+ |                                                                                      |           |
+ |                                                                                      |           |
+ |                                                                                      |           |
 
-- Background
-- Character
-- Obstacles / enemies
+ |Tasks (Hardware)                                                                      |Done by:   |
+ |:-------------------------------------------------------------------------------------|:----------|
+ |install pi with chromium kiosk mode                                                   |Arno       |
+ |make update repo, kiosk and debugmenu shell scripts                                   |Arno       |
+ |add arduino to the player 1 controller                                                |Arno       |
+ |add arduino to the player 2 controller                                                |Arno       |
+ |finish controllers, killswitch, rewire,...                                            |Arno       |
+ |make a debugmenu keystroke sequence                                                   |Arno       |
+ |add coin acceptor with voltage devider an analise analog signals with arduino         |Arno       |
+ |map all the buttons and code the arduinos                                             |Arno       |
 
-### Programming (JavaScript)
+## Hardware, software & used technologies
 
-- Movement
-- Power ups
-- Menu's
-- Game Logic
-
-### Server setup
-
-- Windows server
-- VPN
-- SMB
-- Domain setup
-
-## Hardware & software
-
-- Hardware: pc
+- Hardware: 2 arcade controllers (seat & mobile controller)
+- Hardware: arduino pro micro (inside the controllers)
+- Hardware: raspberry pi (playing the game in kiosk mode)
+- Software: Visual Studio Code (code editor)
+- Software: arduino ide (code editor & compiler)
 - Software: Visual Studio Code (code editor)
 - Language: JavaScript using Phaser (Framework)
+- Language: html, css
+- Language: arduino
 
 ## Links/ bibliography
 
