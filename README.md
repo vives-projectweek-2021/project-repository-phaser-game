@@ -154,6 +154,7 @@ The game will also be hosted local on a raspberry pi. The pi will be installed w
 - Software: Visual Studio Code (code editor)
 - Software: arduino ide (code editor & compiler)
 - Software: Visual Studio Code (code editor)
+- Software: Piskel (pixel art)
 - Language: JavaScript using Phaser (Framework)
 - Language: html, css
 - Language: arduino
