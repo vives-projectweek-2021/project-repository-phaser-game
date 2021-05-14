@@ -9,6 +9,8 @@
 - [First concept (the concept before beginning in phaser)](concept.md)
 - [Hardware (extra info)](./Hardware)
 
+[![Youtube video](img/YTthumbnail.png)](https://www.youtube.com/watch?v=s3fNe2pG_wg)
+
 Our idea is to make an infinite runner game. Where the objective is to get the character as far as possible while avoiding obstacles (and collect coins). But with a twist, this endless runner can be played with a friend, they can try to stop you by droping obstacles and activating debuffs.
 
 We chose an endless runner because you can start very simple and build up from there.
