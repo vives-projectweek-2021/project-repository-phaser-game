@@ -158,6 +158,7 @@ You can also just git clone this repo and localhost the game.
 - Language: JavaScript using Phaser (Framework)
 - Language: html, css
 - Language: arduino
+- Language: bash (raspberry pi scripts)
 
 ## Links/ bibliography
 
