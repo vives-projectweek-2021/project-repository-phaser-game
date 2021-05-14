@@ -11,7 +11,7 @@
 
 [![Youtube video](img/YTthumbnail.png)](https://www.youtube.com/watch?v=s3fNe2pG_wg)
 
-Our idea is to make an infinite runner game. Where the objective is to get the character as far as possible while avoiding obstacles (and collect coins). But with a twist, this endless runner can be played with a friend, they can try to stop you by droping obstacles and activating debuffs.
+Our idea is to make an infinite runner game. Where the objective is to get the character as far as possible while avoiding obstacles (and collect coins). But with a twist, this endless runner can be played with a friend, they can try to stop you by dropping obstacles and activating debuffs.
 
 We chose an endless runner because you can start very simple and build up from there.
 
@@ -81,8 +81,10 @@ Some endless runners are very well-known for their addictiveness, like Subway Su
 
 Phaser can be hosted from netlify, Because the webpage is static.
 
-The only downside is that it takes a loung time to load the phaser framework. witch is 6Mb.
+The only downside is that it takes a long time to load the phaser framework. witch is 6Mb.
 The game will also be hosted local on a raspberry pi. The pi will be installed with kiosk mode. The player can play on the pi with the controllers and a screen.
+
+You can also just git clone this repo and localhost the game.
 
 ## Tasks
 
