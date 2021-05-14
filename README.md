@@ -57,7 +57,7 @@ Some endless runners are very well-known for their addictiveness, like Subway Su
 
 ### Theme (graphics)
 
-- Alien, space including a planet & craters
+- Space including a planet, aliens, a UFO, boxes & craters
 
 ## Visual
 
@@ -162,8 +162,12 @@ The game will also be hosted local on a raspberry pi. The pi will be installed w
 
 [Phaser Tutorial 1](https://www.youtube.com/watch?v=uxos1GG32Tg)
 
+[Phaser 3: Making your first game](https://phaser.io/tutorials/making-your-first-phaser-3-game/part1)
+
 [Complete Course Phaser 1hour](https://www.youtube.com/watch?v=hI_LS8bdkM4)
 
 [Example endless runner](https://www.emanueleferonato.com/2019/01/23/html5-endless-runner-built-with-phaser-and-arcade-physics-step-5-adding-deadly-fire-being-kind-with-players-by-setting-its-body-smaller-than-the-image/)
 
 [Raspberry pi kiosk mode](https://pimylifeup.com/raspberry-pi-kiosk/)
+
+[Piskel tutorials](https://www.youtube.com/playlist?list=PLO3K3VFvlU6Akj3W29_nMLZFnwNOVbAzI)
