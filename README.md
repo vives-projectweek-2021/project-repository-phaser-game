@@ -23,6 +23,10 @@ Some endless runners are very well-known for their addictiveness, like Subway Su
 - [Aaron Van Vyve](https://github.com/vives-projectweek-2021/projectweek21-report-AaronVanV)
 - [Henry Buysschaert](https://github.com/vives-projectweek-2021/projectweek21-report-HenryBuyssie)
 
+## Controls & features
+
+<!-- TO ADD -->
+
 ## Game facts
 
 ### Physics
@@ -38,23 +42,22 @@ Some endless runners are very well-known for their addictiveness, like Subway Su
 #### Buffs
 
 - Low gravity
-- Jumpboost
-- Speed
+- Slow time
 - Triple jump
 - Extra life
+- Disable player 2
 - Coins (extra points)
-<!--  add buffs -->
 
 #### Debuffs
 
-- Slowness
-- Dwarfinator (smaller character)
-- Single jump
-<!--  add debuffs -->
+- Speed up time
+- Dwarfinator (smaller character) + Single jump
+- Make obstacles jump
+
 
 ### Theme (graphics)
 
-- Alien, space
+- Alien, space including a planet & craters
 
 ## Visual
 
@@ -67,7 +70,12 @@ Some endless runners are very well-known for their addictiveness, like Subway Su
 
 - Current score
 - Timer
-<!--  add all the timers and game things -->
+- Disable player 2 timer
+- Distance
+- Powerup timer
+- Debuff timer
+- Drop obstacle timer
+
 
 ## Hosting
 
@@ -80,23 +88,23 @@ The game will also be hosted local on a raspberry pi. The pi will be installed w
 
  |Tasks (game)                                                                          |Done by:   |
  |:-------------------------------------------------------------------------------------|:----------|
- |phaser basic game setup                                                               |           |
+ |phaser basic game setup                                                               |Aaron      |
  |find a good no copyrighted background track                                           |           |
  |install background audio                                                              |Arno       |
  |player 1 movement                                                                     |           |
- |player 2 movement                                                                     |           |
+ |player 2 movement                                                                     |Aaron      |
  |player 1 left right                                                                   |Arno       |
- |visuals (sprites, background, buffs, obstacles, ...)                                  |           |
+ |visuals (sprites, background, buffs, obstacles, ...)                                  |Aaron      |
  |convert main.js to multiple scenes                                                    |Arno       |
  |create loading assets and menu scenes                                                 |Arno       |
  |add 2 seconds delayed start for performance                                           |Arno       |
- |publish to netlify and craete lifetime free domainname                                |Arno       |
+ |publish to netlify and create lifetime free domain name                               |Arno       |
  |add pi.html with a second main£.js with limited frame rate for the pi                 |Arno       |
- |edit final video in premiere pro                                                      |           |
- |                                                                                      |           |
- |                                                                                      |           |
- |                                                                                      |           |
- |                                                                                      |           |
+ |edit final video in premiere pro                                                      |Arno       |
+ |player 2 dropping obstacles every 3 seconds                                           |Aaron      |
+ |border offscreen deleting object when offscreen                                       |Aaron      |
+ |obstacles and coins spawn on random location offscreen and move towards player 1      |Aaron      |
+ |show timers onscreen                                                                  |Aaron      |
  |                                                                                      |           |
  |                                                                                      |           |
  |                                                                                      |           |
@@ -107,20 +115,20 @@ The game will also be hosted local on a raspberry pi. The pi will be installed w
 
  |Tasks (buffs)                                                                         |Done by:   |
  |:-------------------------------------------------------------------------------------|:----------|
- |buff 1                                                                                |           |
- |buff 2                                                                                |           |
- |...                                                                                   |           |
- |                                                                                      |           |
- |                                                                                      |           |
+ |triple jump                                                                           |           |
+ |extra life                                                                            |           |
+ |disable player 2                                                                      |Aaron      |
+ |slow time                                                                             |           |
+ |low gravity                                                                           |           |
  |                                                                                      |           |
  |                                                                                      |           |
  |                                                                                      |           |
 
  |Tasks (debuffs)                                                                       |Done by:   |
  |:-------------------------------------------------------------------------------------|:----------|
- |debuff 1                                                                              |           |
- |debuff 2                                                                              |           |
- |...                                                                                   |           |
+ |dwarfinator                                                                           |           |
+ |obstacle jump                                                                         |Aaron      |
+ |speed up time                                                                         |Aaron      |
  |                                                                                      |           |
  |                                                                                      |           |
  |                                                                                      |           |
