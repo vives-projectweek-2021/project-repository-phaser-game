@@ -26,7 +26,10 @@ Some endless runners are very well-known for their addictiveness, like Subway Su
 
 ## Controls & features
 
-<!-- TO ADD -->
+![features1](./img/features-page-001.jpg)
+![features2](./img/features-page-002.jpg)
+![features3](./img/features-page-003.jpg)
+![features4](./img/features-page-004.jpg)
 
 ## Game facts
 
