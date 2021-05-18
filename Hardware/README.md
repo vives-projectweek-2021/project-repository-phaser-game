@@ -4,9 +4,9 @@ The code of all the hardware can be found in the cortrect directory. Also the pi
 
 ## Player (Seat)
 
-### Player Arduino PRO-Micro Pinout
-
 ![seat](img/seat.png)
+
+### Player Arduino PRO-Micro Pinout
 
 - Joystick
   - up: 3
@@ -22,9 +22,9 @@ The code of all the hardware can be found in the cortrect directory. Also the pi
 
 ## Defender (launchbox)
 
-### Defender Arduino PRO-Micro Pinout
-
 ![defender](img/defender.png)
+
+### Defender Arduino PRO-Micro Pinout
 
 - Joystick
   - up: 5
