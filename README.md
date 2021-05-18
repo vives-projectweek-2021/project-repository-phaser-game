@@ -89,7 +89,7 @@ You can also just git clone this repo and localhost the game.
  |Tasks (game)                                                                          |Done by:   |
  |:-------------------------------------------------------------------------------------|:----------|
  |phaser basic game setup                                                               |Aaron      |
- |find a good no copyrighted background track                                           |           |
+ |find a good no copyrighted background track                                           |Henry      |
  |install background audio                                                              |Arno       |
  |player 1 jump & gravity                                                               |Aaron      |
  |player 2 movement                                                                     |Aaron      |
@@ -105,28 +105,28 @@ You can also just git clone this repo and localhost the game.
  |border offscreen deleting object when offscreen                                       |Aaron      |
  |obstacles and coins spawn on random location offscreen and move towards player 1      |Aaron      |
  |show timers onscreen                                                                  |Aaron      |
- |                                                                                      |           |
- |                                                                                      |           |
- |                                                                                      |           |
- |                                                                                      |           |
+ |player 1 powerup coding                                                               |Henry      |
+ |implementing double jump mechanic                                                     |Henry      |
+ |ability and debuff timer                                                              |Henry      |
+ |random power spawner                                                                  |Henry      |
  |                                                                                      |           |
  |                                                                                      |           |
  |                                                                                      |           |
 
  |Tasks (buffs)                                                                         |Done by:   |
  |:-------------------------------------------------------------------------------------|:----------|
- |triple jump                                                                           |           |
- |extra life                                                                            |           |
+ |triple jump                                                                           |Henry      |
+ |extra life                                                                            |Henry      |
  |disable player 2                                                                      |Aaron      |
- |slow time                                                                             |           |
- |low gravity                                                                           |           |
+ |slow time                                                                             |Henry      |
+ |low gravity                                                                           |Henry      |
  |                                                                                      |           |
  |                                                                                      |           |
  |                                                                                      |           |
 
  |Tasks (debuffs)                                                                       |Done by:   |
  |:-------------------------------------------------------------------------------------|:----------|
- |dwarfinator                                                                           |           |
+ |dwarfinator                                                                           |Henry      |
  |obstacle jump                                                                         |Aaron      |
  |speed up time                                                                         |Aaron      |
  |                                                                                      |           |
