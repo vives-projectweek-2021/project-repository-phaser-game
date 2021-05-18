@@ -91,6 +91,10 @@ export class Game extends Phaser.Scene{
         this.border = this.physics.add.sprite(-30, 200, 'border');
         this.physics.add.collider(this.border, this.platforms);
 
+        //crates stackable
+        this.physics.add.collider(this.obstacles, this.obstacles);
+    
+
         //out of bounds disable
         this.physics.add.overlap(this.border, this.obstacles , this.OutOfBounds, null, this);
         this.physics.add.overlap(this.border, this.coins , this.OutOfBounds, null, this);
