@@ -8,6 +8,7 @@
 - [Final video](https://www.youtube.com/watch?v=s3fNe2pG_wg)
 - [First concept (the concept before beginning in phaser)](concept.md)
 - [Hardware (extra info)](./Hardware)
+- [Features and controlls](./features.pdf)
 
 [![Youtube video](img/YTthumbnail.png)](https://www.youtube.com/watch?v=s3fNe2pG_wg)
 
